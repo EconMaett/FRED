@@ -12,6 +12,8 @@
 ## Load packages ----
 library(fredr)
 library(tidyverse)
+library(scales)
+library(ggtext)
 library(tsbox)
 library(xts)
 
@@ -136,7 +138,7 @@ stlppm |>
   select(date, value) |> 
   ggplot(mapping = aes(x = date, y = value)) +
   geom_line(linewidth = 1, color = "#374e8e") +
-  geom_hline(yintercept = 0, linetype = "dashed", color = "black", show.legend = NULL) +
+  geom_hline(yintercept = 0.5, linetype = "dashed", color = "black", show.legend = NULL) +
   scale_x_date(limits = c(date("2015-01-01"), NA), date_breaks = "1 year", date_labels = "%y") +
   scale_y_continuous(limits = c(0, 1.25), breaks = c(0, 0.25, 0.5, 0.75, 1, 1.25)) +
   theme_bw() +
