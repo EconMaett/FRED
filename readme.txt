@@ -1,0 +1,2 @@
+This repository shows how to access economic time series from the Federal Reserve Economic Data (FRED) data base
+maintained by the Federal Rerserve Bank of St. Louis, Missouri (https://fred.stlouisfed.org/).
