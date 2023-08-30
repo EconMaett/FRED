@@ -32,7 +32,7 @@ dff |>
   ggplot() +
   geom_line(mapping = aes(x = date, y = value), linewidth = 1, color = "#374e8e") +
   geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
-  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +
+  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%Y") +
   scale_y_continuous(limits = c(0, 6), breaks = 0:6) +
   theme_bw() +
   labs(
@@ -56,7 +56,7 @@ walcl |>
   ggplot() +
   geom_line(mapping = aes(x = date, y = value), linewidth = 1, color = "#374e8e") +
   geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
-  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +
+  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%Y") +
   scale_y_continuous(limits = c(0, 10e6), labels = label_number(suffix = "M", scale = 1e-6), breaks = c(0:10)*1e6) +
   theme_bw() +
   labs(
@@ -84,7 +84,7 @@ df |>
   ggplot() +
   geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
   geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
-  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +
+  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%Y") +
   scale_y_continuous(limits = c(0, 8)) +
   scale_color_manual(values = c("#ac004f", "#374e8e", "#478c5b")) +
   theme_bw() +
@@ -116,7 +116,7 @@ df |>
   ggplot() +
   geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
   geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
-  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +
+  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%Y") +
   scale_y_continuous(limits = c(0, 6)) +
   scale_color_manual(
     values = c("#374e8e", "#ac004f", "#478c5b", "#a07bde"), 
@@ -149,7 +149,7 @@ df |>
   geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
   geom_hline(yintercept = 0, linetype = "dashed", color = "black", show.legend = NULL) +
   geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
-  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +
+  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%Y") +
   scale_y_continuous(limits = c(-3, 3), breaks = -3:3) +
   scale_color_manual(
     values = c("#374e8e", "#ac004f"), 
@@ -183,7 +183,7 @@ df |>
   geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
   geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
   geom_hline(yintercept = 0, linetype = "dashed", color = "black", linewidth = 1, show.legend = NULL) +
-  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +
+  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%Y") +
   scale_y_continuous(limits = c(-2, 6)) +
   scale_color_manual(
     values = c("#374e8e", "#ac004f", "#478c5b"), 
@@ -213,7 +213,7 @@ df |>
   ggplot() +
   geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
   geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
-  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +
+  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%Y") +
   scale_y_continuous(limits = c(0, 40e3), labels = label_number(suffix = "K", scale = 1e-3)) +
   scale_color_manual(
     values = c("#374e8e", "#ac004f"), 
@@ -245,7 +245,7 @@ df |>
   ggplot() +
   geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
   geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
-  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +
+  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%Y") +
   scale_y_continuous(limits = c(0, 12), breaks = seq(0, 12, 2)) +
   scale_color_manual(
     values = c("#374e8e", "#ac004f"), 

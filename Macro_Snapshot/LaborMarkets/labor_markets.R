@@ -27,7 +27,7 @@ unrate |>
   geom_line(mapping = aes(x = date, y = value), color = "#374e8e", linewidth = 1) +
   geom_hline(yintercept = 0, linetype = "solid", color = "black", show.legend = NULL) +
   geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
-  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +  scale_y_continuous(limits = c(0, 150), breaks = seq(0, 150, 25)) +
+  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%Y") +  scale_y_continuous(limits = c(0, 150), breaks = seq(0, 150, 25)) +
   scale_y_continuous(limits = c(0, 15)) +
   theme_bw() +
   labs(
@@ -48,7 +48,7 @@ payems |>
   geom_line(mapping = aes(x = date, y = value), color = "#374e8e", linewidth = 1) +
   geom_hline(yintercept = 0, linetype = "dashed", color = "black", show.legend = NULL) +
   geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
-  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +  scale_y_continuous(limits = c(0, 150), breaks = seq(0, 150, 25)) +
+  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%Y") +  scale_y_continuous(limits = c(0, 150), breaks = seq(0, 150, 25)) +
   scale_y_continuous(labels = label_number(suffix = "K", scale = 1e-3)) +
   theme_bw() +
   labs(
@@ -69,7 +69,7 @@ civpart |>
   ggplot() +
   geom_line(mapping = aes(x = date, y = value), linewidth = 1, color = "#374e8e") +
   geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
-  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +  scale_y_continuous(limits = c(0, 150), breaks = seq(0, 150, 25)) +
+  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%Y") +  scale_y_continuous(limits = c(0, 150), breaks = seq(0, 150, 25)) +
   scale_y_continuous(limits = c(60, 64)) +
   theme_bw() +
   labs(
@@ -98,7 +98,7 @@ rbind(jtsjol, unemploy) |>
   geom_line(mapping = aes(x = date, y = VACANC), color = "#374e8e", linewidth = 1) +
   geom_hline(yintercept = min(jtsjol$value / unemploy$value, na.rm = TRUE), linetype = "dotted", color = "#374e8e", linewidth = 1) +
   geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
-  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +  scale_y_continuous(limits = c(0, 150), breaks = seq(0, 150, 25)) +
+  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%Y") +  scale_y_continuous(limits = c(0, 150), breaks = seq(0, 150, 25)) +
   scale_y_continuous(limits = c(0, 3)) +
   theme_bw() +
   labs(
@@ -122,7 +122,7 @@ df |>
   geom_line(mapping = aes(x = date, y = ICSA), color = "#374e8e", linewidth = 1) +
   geom_line(mapping = aes(x = date, y = CCSA), color = "#ac004f", linewidth = 1) +
   geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
-  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +  scale_y_continuous(limits = c(0, 150), breaks = seq(0, 150, 25)) +
+  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%Y") +  scale_y_continuous(limits = c(0, 150), breaks = seq(0, 150, 25)) +
   scale_y_continuous(labels = label_number(suffix = "M", scale = 1e-6), limits = c(0, 25e6)) +
   theme_bw() +
   labs(
@@ -144,7 +144,7 @@ avhe |>
   ggplot() +
   geom_line(mapping = aes(x = date, y = value), color = "#374e8e", linewidth = 1) +
   geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
-  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +  scale_y_continuous(limits = c(0, 150), breaks = seq(0, 150, 25)) +
+  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%Y") +  scale_y_continuous(limits = c(0, 150), breaks = seq(0, 150, 25)) +
   scale_y_continuous(limits = c(0, 10), breaks = c(0, 2, 4, 6, 8, 10)) +
   theme_bw() +
   labs(
@@ -166,7 +166,7 @@ kclmc |>
   geom_line(mapping = aes(x = date, y = value), color = "#374e8e", linewidth = 1) +
   geom_hline(yintercept = 0, linetype = "dashed", color = "black", show.legend = NULL) +
   geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
-  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +  scale_y_continuous(limits = c(0, 150), breaks = seq(0, 150, 25)) +
+  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%Y") +  scale_y_continuous(limits = c(0, 150), breaks = seq(0, 150, 25)) +
   scale_y_continuous(limits = c(-3, 2)) +
   theme_bw() +
   labs(
@@ -197,7 +197,7 @@ df |>
   geom_line(mapping = aes(x = date, y = `Labor Demand`), color = "#374e8e", linewidth = 1) +
   geom_line(mapping = aes(x = date, y = `Labor Supply`), color = "#ac004f", linewidth = 1) +
   geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
-  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +  scale_y_continuous(limits = c(0, 150), breaks = seq(0, 150, 25)) +
+  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%Y") +  scale_y_continuous(limits = c(0, 150), breaks = seq(0, 150, 25)) +
   scale_y_continuous(labels = label_number(suffix = "M", scale = 1e-3), limits = c(130e3, 180e3)) +
   theme_bw() +
   labs(

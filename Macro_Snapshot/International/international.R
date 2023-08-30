@@ -32,7 +32,7 @@ df |>
   ggplot() +
   geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
   geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
-  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%y") +  scale_y_continuous(limits = c(0, 150), breaks = seq(0, 150, 25)) +
+  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +  scale_y_continuous(limits = c(0, 150), breaks = seq(0, 150, 25)) +
   scale_color_manual(
     values = c("#374e8e", "#ac004f"), 
     breaks = c("DCOILWTICO", "DCOILBRENTEU")
@@ -66,7 +66,7 @@ df |>
   geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
   geom_hline(yintercept = 100, linetype = "dashed", color = "black", show.legend = NULL) +
   geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
-  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%y") +  scale_y_continuous(limits = c(0, 400), breaks = seq(0, 400, 100)) +
+  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +  scale_y_continuous(limits = c(0, 400), breaks = seq(0, 400, 100)) +
   scale_color_manual(
     values = c("#374e8e", "#ac004f", "#478c5b", "#a07bde"), 
     breaks = c("PNRGINDEXM", "PFOODINDEXM", "PRAWMINDEXM", "PMETAINDEXM")
@@ -92,7 +92,7 @@ rtwexbgs |>
   ggplot() +
   geom_line(mapping = aes(x = date, y = value), linewidth = 1, color = "#374e8e") +
   geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
-  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%y") +  scale_y_continuous(limits = c(100, 125), breaks = seq(100, 125, 5)) +
+  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +  scale_y_continuous(limits = c(100, 125), breaks = seq(100, 125, 5)) +
   theme_bw() +
   labs(
     title = "Real Broad dollar Index",
@@ -120,7 +120,7 @@ df |>
   ggplot() +
   geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
   geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
-  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%y") +
+  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
   scale_y_continuous(limits = c(0.9, 1.5), breaks = seq(0.9, 1.5, 0.3)) +
   scale_color_manual(
     values = c("#374e8e", "#ac004f"), 
@@ -156,7 +156,7 @@ df |>
   geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
   geom_hline(yintercept = 0, linetype = "dashed", color = "black", show.legend = NULL) +
   geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
-  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%y") +  scale_y_continuous(limits = c(-30, 30), breaks = seq(-30, 30, 10)) +
+  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +  scale_y_continuous(limits = c(-30, 30), breaks = seq(-30, 30, 10)) +
   scale_color_manual(
     values = c("#374e8e", "#ac004f", "#478c5b", "#8aabfd", "black"), 
     breaks = c("NAEXKP01CAQ189S", "NAEXKP01JPQ189S", "NAEXKP01EZQ652S", "NAEXKP01GBQ652S", "NAEXKP01USQ652S")
@@ -191,7 +191,7 @@ df |>
   geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
   geom_hline(yintercept = 0, linetype = "dashed", color = "black", show.legend = NULL) +
   geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
-  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%y") +
+  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
   scale_y_continuous(limits = c(-5, 15), breaks = seq(-5, 15, 5)) +
   scale_color_manual(
     values = c("#374e8e", "#ac004f", "#478c5b", "black"), 
