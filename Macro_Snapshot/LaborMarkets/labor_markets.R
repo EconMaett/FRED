@@ -14,7 +14,7 @@ library(tidyverse)
 library(scales)
 library(ggtext)
 
-start_date <- "2015-01-01"
+start_date <- "2018-01-01"
 usrecdp <- read_csv(file = "Recession_Dates/NBER_Recession_Dates.csv")
 
 
