@@ -17,34 +17,26 @@ library(scales)
 library(ggtext)
 
 start_date <- "2015-01-01"
-
-# Possible changes:
-# - Shaded areas indicating NBER recessions
-# - SEP projections as single data points or box plots
-# - Monthly observations are assigned to the first day of
-#   the new month, e.g 2023-07-01. But then it looks as if this
-#   observation belongs to the last month. Change this.
+usrecdp <- read_csv(file = "Recession_Dates/NBER_Recession_Dates.csv")
 
 
 ### Real Gross Domestic Product (GDP) Growth ----
-
-# We use purrr::pmap_dfr() which allows varying optional parameters:
 params <- list(
   series_id = c("GDPC1", "GDPC1RH", "GDPC1RL", "GDPC1CTH", "GDPC1CTL", "GDPC1MD"),
   unis = c("pc1", "lin", "lin", "lin", "lin", "lin")
 )
 
-df <- purrr::pmap_dfr(.l = params, .f = ~fredr(series_id = .x, units = .y, observation_end = today() + years(4))) |> 
-  select(date, series_id, value) |> 
-  filter(date >= start_date)
+df <- purrr::pmap_dfr(.l = params, .f = ~fredr(series_id = .x, units = .y))
 
 df |> 
+  select(date, series_id, value) |> 
   ggplot() +
   geom_line(data = df |> filter(series_id == "GDPC1"), mapping = aes(x = date, y = value), color = "#006d64", linewidth = 1) +
   geom_boxplot(data = df |> filter(series_id != "GDPC1"), mapping = aes(x = date, y = value, group = date),
                show.legend = NULL, width = 50, fill = "#df7c18") +
   geom_hline(yintercept = 0, linetype = "dashed", color = "black", show.legend = NULL) +
-  scale_x_date(date_breaks = "1 year", date_labels = "%y") +
+  geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
+  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +  scale_y_continuous(limits = c(0, 150), breaks = seq(0, 150, 25)) +
   scale_y_continuous(limits = c(-10, 15)) +
   theme_bw() +
   labs(
@@ -60,17 +52,19 @@ graphics.off()
 
 ### Unemployment rate ----
 series_id <- c("UNRATE", "UNRATERH", "UNRATECTH", "UNRATEMD", "UNRATECTL", "UNRATERL")
-df <- purrr::map_dfr(.x = series_id, .f = fredr) |> 
-  select(date, series_id, value) |> 
-  filter(date >= start_date)
+df <- purrr::map_dfr(.x = series_id, .f = fredr)
+
 
 df |> 
+  select(date, series_id, value) |> 
   ggplot() +
   geom_line(data = df |> filter(series_id == "UNRATE"), mapping = aes(x = date, y = value), color = "#006d64", linewidth = 1) +
   geom_boxplot(data = df |> filter(series_id != "UNRATE"), mapping = aes(x = date, y = value, group = date),
                show.legend = NULL, width = 50, fill = "#df7c18") +
   geom_hline(yintercept = 0, linetype = "solid", color = "black", show.legend = NULL) +
-  scale_x_date(date_breaks = "1 year", date_labels = "%y") +
+  geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
+  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +  scale_y_continuous(limits = c(0, 150), breaks = seq(0, 150, 25)) +
+  scale_y_continuous(limits = c(0, 15), breaks = seq(0, 15, 5)) +
   theme_bw() +
   labs(
     title = "Unemployment rate & SEP projection",
@@ -93,11 +87,10 @@ params <- list(
     "pc1", "lin", "lin", "lin", "lin", "lin")
 )
 
-df <- purrr::pmap_dfr(.l = params, .f = ~fredr(series_id = .x, units = .y)) |> 
-  select(date, series_id, value) |> 
-  filter(date >= start_date)
+df <- purrr::pmap_dfr(.l = params, .f = ~fredr(series_id = .x, units = .y))
 
 df |> 
+  select(date, series_id, value) |> 
   ggplot() +
   geom_line(data = df |> filter(series_id == "PCEPI"), mapping = aes(x = date, y = value), color = "#374e8e", linewidth = 1) +
   geom_boxplot(data = df |> filter(series_id %in% params$series_id[2:6]), mapping = aes(x = date, y = value, group = date),
@@ -107,7 +100,9 @@ df |>
                show.legend = NULL, width = 50, fill = "#ce4631") +
   geom_hline(yintercept = 0, linetype = "solid", color = "black", show.legend = NULL) +
   geom_hline(yintercept = 2, linetype = "dashed", color = "black", show.legend = NULL) +
-  scale_x_date(date_breaks = "1 year", date_labels = "%y") +
+  geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
+  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +  scale_y_continuous(limits = c(0, 150), breaks = seq(0, 150, 25)) +
+  scale_y_continuous(limits = c(0, 8), breaks = seq(0, 8, 2)) +
   theme_bw() +
   labs(
     title = "Personal Consumption Expenditures (PCE) Inflation & SEP projection",
@@ -122,17 +117,15 @@ graphics.off()
 
 ## Effective Federal Funds Rate ----
 series_id <- c("DFF", "FEDTARRH", "FEDTARCTH", "FEDTARMD", "FEDTARCTL", "FEDTARRL")
-df <- purrr::map_dfr(.x = series_id, .f = fredr) |> 
-  select(date, series_id, value) |> 
-  filter(date >= start_date)
-
+df <- purrr::map_dfr(.x = series_id, .f = fredr)
 df |> 
   ggplot() +
   geom_line(data = df |> filter(series_id == "DFF"), mapping = aes(x = date, y = value), color = "#374e8e", linewidth = 1) +
   geom_boxplot(data = df |> filter(series_id != "DFF"), mapping = aes(x = date, y = value, group = date), 
                show.legend = NULL, width = 50, fill = "#df7c18") +
   geom_hline(yintercept = 0, linetype = "dashed", color = "black", show.legend = NULL) +
-  scale_x_date(date_breaks = "1 year", date_labels = "%y") +
+  geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
+  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +  scale_y_continuous(limits = c(0, 150), breaks = seq(0, 150, 25)) +
   scale_y_continuous(limits = c(0, 8)) +
   theme_bw() +
   labs(

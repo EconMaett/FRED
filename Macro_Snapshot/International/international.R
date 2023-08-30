@@ -16,6 +16,8 @@ library(scales)
 library(ggtext)
 
 start_date <- "2015-01-01"
+usrecdp <- read_csv(file = "Recession_Dates/NBER_Recession_Dates.csv")
+
 
 ### Crude Oil Prices ----
 # Crude Oil Prices: West Texas Intermediate (WTI) - Cushing Oklahoma: DCOILWTICO
@@ -27,10 +29,10 @@ params <- list(
 df <- purrr::pmap_dfr(.l = params, .f = ~fredr(series_id = .x, units = .y))
 df |> 
   select(date, series_id, value) |> 
-  ggplot(mapping = aes(x = date, y = value, color = series_id)) +
-  geom_line(linewidth = 1) +
-  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +
-  scale_y_continuous(limits = c(0, 150), breaks = seq(0, 150, 25)) +
+  ggplot() +
+  geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
+  geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
+  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%y") +  scale_y_continuous(limits = c(0, 150), breaks = seq(0, 150, 25)) +
   scale_color_manual(
     values = c("#374e8e", "#ac004f"), 
     breaks = c("DCOILWTICO", "DCOILBRENTEU")
@@ -60,11 +62,11 @@ params <- list(
 df <- purrr::pmap_dfr(.l = params, .f = ~fredr(series_id = .x, units = .y))
 df |> 
   select(date, series_id, value) |> 
-  ggplot(mapping = aes(x = date, y = value, color = series_id)) +
-  geom_line(linewidth = 1) +
+  ggplot() +
+  geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
   geom_hline(yintercept = 100, linetype = "dashed", color = "black", show.legend = NULL) +
-  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +
-  scale_y_continuous(limits = c(0, 400), breaks = seq(0, 400, 100)) +
+  geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
+  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%y") +  scale_y_continuous(limits = c(0, 400), breaks = seq(0, 400, 100)) +
   scale_color_manual(
     values = c("#374e8e", "#ac004f", "#478c5b", "#a07bde"), 
     breaks = c("PNRGINDEXM", "PFOODINDEXM", "PRAWMINDEXM", "PMETAINDEXM")
@@ -87,10 +89,10 @@ graphics.off()
 rtwexbgs <- fredr(series_id = "RTWEXBGS")
 rtwexbgs |> 
   select(date, value) |> 
-  ggplot(mapping = aes(x = date, y = value)) +
-  geom_line(linewidth = 1, color = "#374e8e") +
-  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +
-  scale_y_continuous(limits = c(100, 125), breaks = seq(100, 125, 5)) +
+  ggplot() +
+  geom_line(mapping = aes(x = date, y = value), linewidth = 1, color = "#374e8e") +
+  geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
+  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%y") +  scale_y_continuous(limits = c(100, 125), breaks = seq(100, 125, 5)) +
   theme_bw() +
   labs(
     title = "Real Broad dollar Index",
@@ -115,9 +117,10 @@ params <- list(
 df <- purrr::pmap_dfr(.l = params, .f = ~fredr(series_id = .x, units = .y))
 df |> 
   select(date, series_id, value) |> 
-  ggplot(mapping = aes(x = date, y = value, color = series_id)) +
-  geom_line(linewidth = 1) +
-  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +
+  ggplot() +
+  geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
+  geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
+  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%y") +
   scale_y_continuous(limits = c(0.9, 1.5), breaks = seq(0.9, 1.5, 0.3)) +
   scale_color_manual(
     values = c("#374e8e", "#ac004f"), 
@@ -149,11 +152,11 @@ params <- list(
 df <- purrr::pmap_dfr(.l = params, .f = ~fredr(series_id = .x, units = .y))
 df |> 
   select(date, series_id, value) |> 
-  ggplot(mapping = aes(x = date, y = value, color = series_id)) +
-  geom_line(linewidth = 1) +
+  ggplot() +
+  geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
   geom_hline(yintercept = 0, linetype = "dashed", color = "black", show.legend = NULL) +
-  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +
-  scale_y_continuous(limits = c(-30, 30), breaks = seq(-30, 30, 10)) +
+  geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
+  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%y") +  scale_y_continuous(limits = c(-30, 30), breaks = seq(-30, 30, 10)) +
   scale_color_manual(
     values = c("#374e8e", "#ac004f", "#478c5b", "#8aabfd", "black"), 
     breaks = c("NAEXKP01CAQ189S", "NAEXKP01JPQ189S", "NAEXKP01EZQ652S", "NAEXKP01GBQ652S", "NAEXKP01USQ652S")
@@ -184,10 +187,11 @@ params <- list(
 df <- purrr::pmap_dfr(.l = params, .f = ~fredr(series_id = .x, units = .y))
 df |> 
   select(date, series_id, value) |> 
-  ggplot(mapping = aes(x = date, y = value, color = series_id)) +
-  geom_line(linewidth = 1) +
+  ggplot() +
+  geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
   geom_hline(yintercept = 0, linetype = "dashed", color = "black", show.legend = NULL) +
-  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +
+  geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
+  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%y") +
   scale_y_continuous(limits = c(-5, 15), breaks = seq(-5, 15, 5)) +
   scale_color_manual(
     values = c("#374e8e", "#ac004f", "#478c5b", "black"), 

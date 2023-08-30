@@ -16,6 +16,7 @@ library(scales)
 library(ggtext)
 
 start_date <- "2015-01-01"
+usrecdp <- read_csv(file = "Recession_Dates/NBER_Recession_Dates.csv")
 
 
 ### Real Gross Domestic Product (GDP) ----
@@ -26,8 +27,9 @@ params <- list(
 df <- purrr::pmap_dfr(.l = params, .f = ~fredr(series_id = .x, units = .y))
 df |> 
   select(date, series_id, value) |> 
-  ggplot(mapping = aes(x = date, y = value, color = series_id)) +
-  geom_line(linewidth = 1) +
+  ggplot() +
+  geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
+  geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
   scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%y") +
   scale_y_continuous(limits = c(17e3, 22e3), labels = label_number(suffix = "K", scale = 1e-3)) +
   scale_color_manual(values = c("#ac004f", "#374e8e")) +
@@ -53,8 +55,9 @@ params <- list(
 df <- purrr::pmap_dfr(.l = params, .f = ~fredr(series_id = .x, units = .y))
 df |> 
   select(date, series_id, value) |> 
-  ggplot(mapping = aes(x = date, y = value, color = series_id)) +
-  geom_line(linewidth = 1) +
+  ggplot() +
+  geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
+  geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
   scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +
   scale_y_continuous(limits = c(0, 10e3), labels = label_number(suffix = "K", scale = 1e-3)) +
   scale_color_manual(values = c("#478c5b", "#374e8e", "#ac004f")) +
@@ -78,12 +81,12 @@ params <- list(
   series_id = c("PRFIC1", "PNFIC1"),
   units = c("lin", "lin")
 )
-
 df <- purrr::pmap_dfr(.l = params, .f = ~fredr(series_id = .x, units = .y))
 df |> 
   select(date, series_id, value) |> 
-  ggplot(mapping = aes(x = date, y = value, color = series_id)) +
-  geom_line(linewidth = 1) +
+  ggplot() +
+  geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
+  geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
   scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%y") +
   scale_y_continuous(limits = c(0, 3000), labels = label_number(suffix = "B")) +
   scale_color_manual(values = c("#ac004f", "#374e8e")) +
@@ -104,11 +107,11 @@ graphics.off()
 cbic1 <- fredr(series_id = "CBIC1", units = "lin")
 cbic1 |> 
   select(date, value) |> 
-  filter(date >= start_date) |> 
-  ggplot(mapping = aes(x = date, y = value)) +
-  geom_line(color = "#374e8e", linewidth = 1) +
+  ggplot() +
+  geom_line(mapping = aes(x = date, y = value), color = "#374e8e", linewidth = 1) +
   geom_hline(yintercept = 0, linetype = "dashed", color = "black", show.legend = NULL) +
-  scale_x_date(date_breaks = "1 year", date_labels = "%y") +
+  geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
+  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%y") +
   theme_bw() +
   labs(
     title = "Change in Real Private Inventories",
@@ -125,10 +128,11 @@ graphics.off()
 gcec1 <- fredr(series_id = "GCEC1", units = "lin")
 gcec1 |> 
   select(date, value) |> 
-  filter(date >= start_date) |> 
-  ggplot(mapping = aes(x = date, y = value)) +
-  geom_line(color = "#374e8e", linewidth = 1) +
-  scale_x_date(date_breaks = "1 year", date_labels = "%y") +
+  ggplot() +
+  geom_line(mapping = aes(x = date, y = value), color = "#374e8e", linewidth = 1) +
+  geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
+  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%y") +
+  scale_y_continuous(limits = c(3000, 3500), labels = label_number(suffix = "K", scale = 1e-3)) +
   theme_bw() +
   labs(
     title = "Real Government Consumption and Gross Investment",
@@ -150,14 +154,15 @@ params <- list(
 df <- purrr::pmap_dfr(.l = params, .f = ~fredr(series_id = .x, units = .y))
 df |> 
   select(date, series_id, value) |> 
-  ggplot(mapping = aes(x = date, y = value, color = series_id)) +
-  geom_line(linewidth = 1) +
+  ggplot() +
+  geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
+  geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
   scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%y") +
   scale_y_continuous(limits = c(0, 4500)) +
   scale_color_manual(values = c("#374e8e", "#ac004f")) +
   theme_bw() +
   labs(
-    title = "REal Imports and Exports of Goods and Services in billions of chained 2012 Dollars",
+    title = "Real Imports and Exports of Goods and Services in billions of chained 2012 Dollars",
     subtitle = "<span style = 'color: #374e8e;'>Imports</span> and <span style = 'color: #ac004f;'>Exports</span>",
     caption = "Graph created by @econmaett with data from FRED.",
     x = "", y = ""
@@ -172,10 +177,10 @@ graphics.off()
 netexc <- fredr(series_id = "NETEXC", units = "lin")
 netexc |> 
   select(date, value) |> 
-  filter(date >= start_date) |> 
-  ggplot(mapping = aes(x = date, y = value)) +
-  geom_line(color = "#374e8e", linewidth = 1) +
-  scale_x_date(date_breaks = "1 year", date_labels = "%y") +
+  ggplot() +
+  geom_line(mapping = aes(x = date, y = value), color = "#374e8e", linewidth = 1) +
+  geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
+  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%y") +
   scale_y_continuous(limits = c(-1600, -600)) +
   theme_bw() +
   labs(
@@ -193,10 +198,10 @@ graphics.off()
 gdi <- fredr(series_id = "A261RX1Q020SBEA")
 gdi |> 
   select(date, value) |> 
-  ggplot(mapping = aes(x = date, y = value)) +
-  geom_line(linewidth = 1, color = "#374e8e") +
-  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%y") +
-  scale_y_continuous(limits = c(17e3, 21e3), labels = label_number(suffix = "K", scale = 1e-3)) +
+  ggplot() +
+  geom_line(mapping = aes(x = date, y = value), linewidth = 1, color = "#374e8e") +
+  geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
+  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%y") +  scale_y_continuous(limits = c(17e3, 21e3), labels = label_number(suffix = "K", scale = 1e-3)) +
   theme_bw() +
   labs(
     title = "Real Gross Domestic Income (GDI)",

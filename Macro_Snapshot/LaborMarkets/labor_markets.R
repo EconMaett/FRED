@@ -15,17 +15,19 @@ library(scales)
 library(ggtext)
 
 start_date <- "2015-01-01"
+usrecdp <- read_csv(file = "Recession_Dates/NBER_Recession_Dates.csv")
+
 
 ## Unemployment Rate ----
 unrate <- fredr(series_id = "UNRATE")
 
 unrate |> 
   select(date, value) |> 
-  filter(date >= start_date) |> 
-  ggplot(mapping = aes(x = date, y = value)) +
-  geom_line(color = "#374e8e", linewidth = 1) +
+  ggplot() +
+  geom_line(mapping = aes(x = date, y = value), color = "#374e8e", linewidth = 1) +
   geom_hline(yintercept = 0, linetype = "solid", color = "black", show.legend = NULL) +
-  scale_x_date(date_breaks = "1 year", date_labels = "%y") +
+  geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
+  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +  scale_y_continuous(limits = c(0, 150), breaks = seq(0, 150, 25)) +
   scale_y_continuous(limits = c(0, 15)) +
   theme_bw() +
   labs(
@@ -42,12 +44,11 @@ graphics.off()
 ### Non-farm Payroll Employment Growth ----
 payems <- fredr(series_id = "PAYEMS", units = "chg")
 payems |> 
-  select(date, value) |> 
-  filter(date >= start_date) |> 
-  ggplot(mapping = aes(x = date, y = value)) +
-  geom_line(color = "#374e8e", linewidth = 1) +
+  ggplot() +
+  geom_line(mapping = aes(x = date, y = value), color = "#374e8e", linewidth = 1) +
   geom_hline(yintercept = 0, linetype = "dashed", color = "black", show.legend = NULL) +
-  scale_x_date(date_breaks = "1 year", date_labels = "%y") +
+  geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
+  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +  scale_y_continuous(limits = c(0, 150), breaks = seq(0, 150, 25)) +
   scale_y_continuous(labels = label_number(suffix = "K", scale = 1e-3)) +
   theme_bw() +
   labs(
@@ -64,13 +65,12 @@ graphics.off()
 ### Labor Force Participation Rate ----
 civpart <- fredr(series_id = "CIVPART")
 civpart |> 
-  select(date, value) |> 
   filter(date >= "2000-01-01") |> 
-  ggplot(mapping = aes(x = date, y = value)) +
-  geom_line(linewidth = 1, color = "#374e8e") +
-  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%y") +
+  ggplot() +
+  geom_line(mapping = aes(x = date, y = value), linewidth = 1, color = "#374e8e") +
+  geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
+  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +  scale_y_continuous(limits = c(0, 150), breaks = seq(0, 150, 25)) +
   scale_y_continuous(limits = c(60, 64)) +
-  geom_smooth(method = "lm", se = FALSE, color = "#374e8e", linetype = "dotted") +
   theme_bw() +
   labs(
     title = "Labor Force Participation Rate & Trend (since Jan 2000)",
@@ -94,10 +94,11 @@ rbind(jtsjol, unemploy) |>
   select(date, series_id, value) |> 
   pivot_wider(names_from = series_id, values_from = value) |> 
   mutate(VACANC = JTSJOL / UNEMPLOY) |> 
-  ggplot(mapping = aes(x = date, y = VACANC)) +
-  geom_line(color = "#374e8e", linewidth = 1) +
+  ggplot() +
+  geom_line(mapping = aes(x = date, y = VACANC), color = "#374e8e", linewidth = 1) +
   geom_hline(yintercept = min(jtsjol$value / unemploy$value, na.rm = TRUE), linetype = "dotted", color = "#374e8e", linewidth = 1) +
-  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%y") +
+  geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
+  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +  scale_y_continuous(limits = c(0, 150), breaks = seq(0, 150, 25)) +
   scale_y_continuous(limits = c(0, 3)) +
   theme_bw() +
   labs(
@@ -120,8 +121,9 @@ df |>
   ggplot() +
   geom_line(mapping = aes(x = date, y = ICSA), color = "#374e8e", linewidth = 1) +
   geom_line(mapping = aes(x = date, y = CCSA), color = "#ac004f", linewidth = 1) +
+  geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
+  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +  scale_y_continuous(limits = c(0, 150), breaks = seq(0, 150, 25)) +
   scale_y_continuous(labels = label_number(suffix = "M", scale = 1e-6), limits = c(0, 25e6)) +
-  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%y") +
   theme_bw() +
   labs(
     title = "Unemployment claims in millions (M)",
@@ -139,10 +141,11 @@ graphics.off()
 avhe <- fredr(series_id = "CES0500000003", units = "pc1")
 avhe |> 
   select(date, value) |> 
-  ggplot(mapping = aes(x = date, y = value)) +
-  geom_line(color = "#374e8e", linewidth = 1) +
+  ggplot() +
+  geom_line(mapping = aes(x = date, y = value), color = "#374e8e", linewidth = 1) +
+  geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
+  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +  scale_y_continuous(limits = c(0, 150), breaks = seq(0, 150, 25)) +
   scale_y_continuous(limits = c(0, 10), breaks = c(0, 2, 4, 6, 8, 10)) +
-  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +
   theme_bw() +
   labs(
     title = "Average Hourly Earnings Growth of Private Employees",
@@ -159,11 +162,12 @@ graphics.off()
 kclmc <- fredr(series_id = "FRBKCLMCILA")
 kclmc |> 
   select(date, value) |> 
-  ggplot(mapping = aes(x = date, y = value)) +
-  geom_line(color = "#374e8e", linewidth = 1) +
-  geom_hline(yintercept = 0, linetype = "dashed", color = "black", linewidth = 1, show.legend = NULL) +
+  ggplot() +
+  geom_line(mapping = aes(x = date, y = value), color = "#374e8e", linewidth = 1) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "black", show.legend = NULL) +
+  geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
+  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +  scale_y_continuous(limits = c(0, 150), breaks = seq(0, 150, 25)) +
   scale_y_continuous(limits = c(-3, 2)) +
-  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +
   theme_bw() +
   labs(
     title = "Kansas City Fed Labor Market Conditions Index",
@@ -192,7 +196,8 @@ df |>
   ggplot() +
   geom_line(mapping = aes(x = date, y = `Labor Demand`), color = "#374e8e", linewidth = 1) +
   geom_line(mapping = aes(x = date, y = `Labor Supply`), color = "#ac004f", linewidth = 1) +
-  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +
+  geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
+  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +  scale_y_continuous(limits = c(0, 150), breaks = seq(0, 150, 25)) +
   scale_y_continuous(labels = label_number(suffix = "M", scale = 1e-3), limits = c(130e3, 180e3)) +
   theme_bw() +
   labs(

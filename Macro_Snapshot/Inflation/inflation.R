@@ -16,6 +16,8 @@ library(scales)
 library(ggtext)
 
 start_date <- "2015-01-01"
+usrecdp <- read_csv(file = "Recession_Dates/NBER_Recession_Dates.csv")
+
 
 ### Personal Consumption Expenditures (PCE) Inflation ----
 params <- list(
@@ -25,11 +27,12 @@ params <- list(
 df <- purrr::pmap_dfr(.l = params, .f = ~fredr(series_id = .x, units = .y))
 df |> 
   select(date, series_id, value) |> 
-  ggplot(mapping = aes(x = date, y = value, color = series_id)) +
-  geom_line(linewidth = 1) +
-  geom_hline(yintercept = 2, linetype = "dashed", color = "black", show.legend = NULL) +
-  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +
+  ggplot() +
+  geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
+  geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
+  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%y") +
   scale_y_continuous(limits = c(0, 8)) +
+  geom_hline(yintercept = 2, linetype = "dashed", color = "black", show.legend = NULL) +
   scale_color_manual(values = c("#374e8e", "#ac004f")) +
   theme_bw() +
   labs(
@@ -55,10 +58,11 @@ params <- list(
 df <- purrr::pmap_dfr(.l = params, .f = ~fredr(series_id = .x, units = .y))
 df |> 
   select(date, series_id, value) |> 
-  ggplot(mapping = aes(x = date, y = value, color = series_id)) +
-  geom_line(linewidth = 1) +
+  ggplot() +
+  geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
   geom_hline(yintercept = 0, linetype = "dashed", color = "black", show.legend = NULL) +
-  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +
+  geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
+  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%y") +
   scale_y_continuous(limits = c(0, 10), breaks = c(0, 2, 4, 6, 8, 10)) +
   scale_color_manual(values = c("#374e8e", "#ac004f")) +
   theme_bw() +
@@ -84,10 +88,11 @@ params <- list(
 df <- purrr::pmap_dfr(.l = params, .f = ~fredr(series_id = .x, units = .y))
 df |> 
   select(date, series_id, value) |> 
-  ggplot(mapping = aes(x = date, y = value, color = series_id)) +
-  geom_line(linewidth = 1) +
+  ggplot() +
+  geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
   geom_hline(yintercept = 0, linetype = "dashed", color = "black", show.legend = NULL) +
-  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +
+  geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
+  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%y") +
   scale_y_continuous(limits = c(-10, 20)) +
   scale_color_manual(values = c("#ac004f", "#374e8e")) +
   theme_bw() +
@@ -114,9 +119,10 @@ params <- list(
 df <- purrr::pmap_dfr(.l = params, .f = ~fredr(series_id = .x, units = .y))
 df |> 
   select(date, series_id, value) |> 
-  ggplot(mapping = aes(x = date, y = value, color = series_id)) +
-  geom_line(linewidth = 1) +
-  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +
+  ggplot() +
+  geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
+  geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
+  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%y") +
   scale_y_continuous(limits = c(0, 8)) +
   scale_color_manual(values = c("#478c5b", "#374e8e", "#ac004f")) +
   theme_bw() +
@@ -136,10 +142,11 @@ graphics.off()
 stlppm <- fredr(series_id = "STLPPM")
 stlppm |> 
   select(date, value) |> 
-  ggplot(mapping = aes(x = date, y = value)) +
-  geom_line(linewidth = 1, color = "#374e8e") +
+  ggplot() +
+  geom_line(mapping = aes(x = date, y = value), linewidth = 1, color = "#374e8e") +
   geom_hline(yintercept = 0.5, linetype = "dashed", color = "black", show.legend = NULL) +
-  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +
+  geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
+  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%y") +
   scale_y_continuous(limits = c(0, 1.25), breaks = c(0, 0.25, 0.5, 0.75, 1, 1.25)) +
   theme_bw() +
   labs(
@@ -158,10 +165,10 @@ graphics.off()
 mich <- fredr(series_id = "MICH")
 mich |> 
   select(date, value) |> 
-  ggplot(mapping = aes(x = date, y = value)) +
-  geom_line(color = "#374e8e", linewidth = 1) +
-  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +
-  scale_y_continuous(limits = c(0, 6), breaks = 0:6) +
+  ggplot() +
+  geom_line(mapping = aes(x = date, y = value), color = "#374e8e", linewidth = 1) +
+  geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
+  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%y") +  scale_y_continuous(limits = c(0, 6), breaks = 0:6) +
   theme_bw() +
   labs(
     title = "Year-Ahead Inflation Expectations",
@@ -184,9 +191,10 @@ params <- list(
 df <- purrr::pmap_dfr(.l = params, .f = ~fredr(series_id = .x, units = .y))
 df |> 
   select(date, series_id, value) |> 
-  ggplot(mapping = aes(x = date, y = value, color = series_id)) +
-  geom_line(linewidth = 1) +
-  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +
+  ggplot() +
+  geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
+  geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
+  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%y") +
   scale_y_continuous(limits = c(0, 4)) +
   scale_color_manual(values = c("#374e8e", "#ac004f")) +
   theme_bw() +
