@@ -13,15 +13,15 @@ library(fredr)
 library(tidyverse)
 library(scales)
 library(ggtext)
-library(tsbox)
-library(xts)
+
+start_date <- "2015-01-01"
 
 ## Unemployment Rate ----
 unrate <- fredr(series_id = "UNRATE")
 
 unrate |> 
   select(date, value) |> 
-  filter(date >= "2015-01-01") |> 
+  filter(date >= start_date) |> 
   ggplot(mapping = aes(x = date, y = value)) +
   geom_line(color = "#374e8e", linewidth = 1) +
   geom_hline(yintercept = 0, linetype = "solid", color = "black", show.legend = NULL) +
@@ -43,7 +43,7 @@ graphics.off()
 payems <- fredr(series_id = "PAYEMS", units = "chg")
 payems |> 
   select(date, value) |> 
-  filter(date >= "2015-01-01") |> 
+  filter(date >= start_date) |> 
   ggplot(mapping = aes(x = date, y = value)) +
   geom_line(color = "#374e8e", linewidth = 1) +
   geom_hline(yintercept = 0, linetype = "dashed", color = "black", show.legend = NULL) +
@@ -68,7 +68,7 @@ civpart |>
   filter(date >= "2000-01-01") |> 
   ggplot(mapping = aes(x = date, y = value)) +
   geom_line(linewidth = 1, color = "#374e8e") +
-  scale_x_date(limits = c(date("2015-01-01"), today()), date_breaks = "1 year", date_labels = "%y") +
+  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%y") +
   scale_y_continuous(limits = c(60, 64)) +
   geom_smooth(method = "lm", se = FALSE, color = "#374e8e", linetype = "dotted") +
   theme_bw() +
@@ -79,7 +79,7 @@ civpart |>
     x = "", y = ""
   )
 
-ggsave(filename = "Macro_Snapshot/LaborMarkets/CIVPART.png", height = 8, width = 4)
+ggsave(filename = "Macro_Snapshot/LaborMarkets/CIVPART.png", width = 8, height = 4)
 graphics.off()
 
 
@@ -97,7 +97,7 @@ rbind(jtsjol, unemploy) |>
   ggplot(mapping = aes(x = date, y = VACANC)) +
   geom_line(color = "#374e8e", linewidth = 1) +
   geom_hline(yintercept = min(jtsjol$value / unemploy$value, na.rm = TRUE), linetype = "dotted", color = "#374e8e", linewidth = 1) +
-  scale_x_date(limits = c(date("2015-01-01"), today()), date_breaks = "1 year", date_labels = "%y") +
+  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%y") +
   scale_y_continuous(limits = c(0, 3)) +
   theme_bw() +
   labs(
@@ -121,7 +121,7 @@ df |>
   geom_line(mapping = aes(x = date, y = ICSA), color = "#374e8e", linewidth = 1) +
   geom_line(mapping = aes(x = date, y = CCSA), color = "#ac004f", linewidth = 1) +
   scale_y_continuous(labels = label_number(suffix = "M", scale = 1e-6), limits = c(0, 25e6)) +
-  scale_x_date(limits = c(date("2015-01-01"), today()), date_breaks = "1 year", date_labels = "%y") +
+  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%y") +
   theme_bw() +
   labs(
     title = "Unemployment claims in millions (M)",
@@ -142,7 +142,7 @@ avhe |>
   ggplot(mapping = aes(x = date, y = value)) +
   geom_line(color = "#374e8e", linewidth = 1) +
   scale_y_continuous(limits = c(0, 10), breaks = c(0, 2, 4, 6, 8, 10)) +
-  scale_x_date(limits = c(date("2015-01-01"), NA), date_breaks = "1 year", date_labels = "%y") +
+  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +
   theme_bw() +
   labs(
     title = "Average Hourly Earnings Growth of Private Employees",
@@ -163,7 +163,7 @@ kclmc |>
   geom_line(color = "#374e8e", linewidth = 1) +
   geom_hline(yintercept = 0, linetype = "dashed", color = "black", linewidth = 1, show.legend = NULL) +
   scale_y_continuous(limits = c(-3, 2)) +
-  scale_x_date(limits = c(date("2015-01-01"), NA), date_breaks = "1 year", date_labels = "%y") +
+  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +
   theme_bw() +
   labs(
     title = "Kansas City Fed Labor Market Conditions Index",
@@ -192,7 +192,7 @@ df |>
   ggplot() +
   geom_line(mapping = aes(x = date, y = `Labor Demand`), color = "#374e8e", linewidth = 1) +
   geom_line(mapping = aes(x = date, y = `Labor Supply`), color = "#ac004f", linewidth = 1) +
-  scale_x_date(limits = c(date("2015-01-01"), NA), date_breaks = "1 year", date_labels = "%y") +
+  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +
   scale_y_continuous(labels = label_number(suffix = "M", scale = 1e-3), limits = c(130e3, 180e3)) +
   theme_bw() +
   labs(

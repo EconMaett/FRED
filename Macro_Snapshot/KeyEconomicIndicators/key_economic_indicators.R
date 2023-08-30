@@ -13,8 +13,10 @@
 ## Load packages ----
 library(fredr)
 library(tidyverse)
-library(tsbox)
-library(xts)
+library(scales)
+library(ggtext)
+
+start_date <- "2015-01-01"
 
 # Possible changes:
 # - Shaded areas indicating NBER recessions
@@ -34,7 +36,7 @@ params <- list(
 
 df <- purrr::pmap_dfr(.l = params, .f = ~fredr(series_id = .x, units = .y, observation_end = today() + years(4))) |> 
   select(date, series_id, value) |> 
-  filter(date >= "2015-01-01")
+  filter(date >= start_date)
 
 df |> 
   ggplot() +
@@ -60,7 +62,7 @@ graphics.off()
 series_id <- c("UNRATE", "UNRATERH", "UNRATECTH", "UNRATEMD", "UNRATECTL", "UNRATERL")
 df <- purrr::map_dfr(.x = series_id, .f = fredr) |> 
   select(date, series_id, value) |> 
-  filter(date >= "2015-01-01")
+  filter(date >= start_date)
 
 df |> 
   ggplot() +
@@ -93,7 +95,7 @@ params <- list(
 
 df <- purrr::pmap_dfr(.l = params, .f = ~fredr(series_id = .x, units = .y)) |> 
   select(date, series_id, value) |> 
-  filter(date >= "2015-01-01")
+  filter(date >= start_date)
 
 df |> 
   ggplot() +
@@ -122,7 +124,7 @@ graphics.off()
 series_id <- c("DFF", "FEDTARRH", "FEDTARCTH", "FEDTARMD", "FEDTARCTL", "FEDTARRL")
 df <- purrr::map_dfr(.x = series_id, .f = fredr) |> 
   select(date, series_id, value) |> 
-  filter(date >= "2015-01-01")
+  filter(date >= start_date)
 
 df |> 
   ggplot() +

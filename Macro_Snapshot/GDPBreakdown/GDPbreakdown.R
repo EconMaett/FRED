@@ -14,8 +14,8 @@ library(fredr)
 library(tidyverse)
 library(scales)
 library(ggtext)
-library(tsbox)
-library(xts)
+
+start_date <- "2015-01-01"
 
 
 ### Real Gross Domestic Product (GDP) ----
@@ -28,7 +28,7 @@ df |>
   select(date, series_id, value) |> 
   ggplot(mapping = aes(x = date, y = value, color = series_id)) +
   geom_line(linewidth = 1) +
-  scale_x_date(limits = c(date("2015-01-01"), today()), date_breaks = "1 year", date_labels = "%y") +
+  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%y") +
   scale_y_continuous(limits = c(17e3, 22e3), labels = label_number(suffix = "K", scale = 1e-3)) +
   scale_color_manual(values = c("#ac004f", "#374e8e")) +
   theme_bw() +
@@ -55,7 +55,7 @@ df |>
   select(date, series_id, value) |> 
   ggplot(mapping = aes(x = date, y = value, color = series_id)) +
   geom_line(linewidth = 1) +
-  scale_x_date(limits = c(date("2015-01-01"), NA), date_breaks = "1 year", date_labels = "%y") +
+  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +
   scale_y_continuous(limits = c(0, 10e3), labels = label_number(suffix = "K", scale = 1e-3)) +
   scale_color_manual(values = c("#478c5b", "#374e8e", "#ac004f")) +
   theme_bw() +
@@ -84,7 +84,7 @@ df |>
   select(date, series_id, value) |> 
   ggplot(mapping = aes(x = date, y = value, color = series_id)) +
   geom_line(linewidth = 1) +
-  scale_x_date(limits = c(date("2015-01-01"), today()), date_breaks = "1 year", date_labels = "%y") +
+  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%y") +
   scale_y_continuous(limits = c(0, 3000), labels = label_number(suffix = "B")) +
   scale_color_manual(values = c("#ac004f", "#374e8e")) +
   theme_bw() +
@@ -104,7 +104,7 @@ graphics.off()
 cbic1 <- fredr(series_id = "CBIC1", units = "lin")
 cbic1 |> 
   select(date, value) |> 
-  filter(date >= "2015-01-01") |> 
+  filter(date >= start_date) |> 
   ggplot(mapping = aes(x = date, y = value)) +
   geom_line(color = "#374e8e", linewidth = 1) +
   geom_hline(yintercept = 0, linetype = "dashed", color = "black", show.legend = NULL) +
@@ -125,7 +125,7 @@ graphics.off()
 gcec1 <- fredr(series_id = "GCEC1", units = "lin")
 gcec1 |> 
   select(date, value) |> 
-  filter(date >= "2015-01-01") |> 
+  filter(date >= start_date) |> 
   ggplot(mapping = aes(x = date, y = value)) +
   geom_line(color = "#374e8e", linewidth = 1) +
   scale_x_date(date_breaks = "1 year", date_labels = "%y") +
@@ -152,7 +152,7 @@ df |>
   select(date, series_id, value) |> 
   ggplot(mapping = aes(x = date, y = value, color = series_id)) +
   geom_line(linewidth = 1) +
-  scale_x_date(limits = c(date("2015-01-01"), today()), date_breaks = "1 year", date_labels = "%y") +
+  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%y") +
   scale_y_continuous(limits = c(0, 4500)) +
   scale_color_manual(values = c("#374e8e", "#ac004f")) +
   theme_bw() +
@@ -172,7 +172,7 @@ graphics.off()
 netexc <- fredr(series_id = "NETEXC", units = "lin")
 netexc |> 
   select(date, value) |> 
-  filter(date >= "2015-01-01") |> 
+  filter(date >= start_date) |> 
   ggplot(mapping = aes(x = date, y = value)) +
   geom_line(color = "#374e8e", linewidth = 1) +
   scale_x_date(date_breaks = "1 year", date_labels = "%y") +
@@ -195,7 +195,7 @@ gdi |>
   select(date, value) |> 
   ggplot(mapping = aes(x = date, y = value)) +
   geom_line(linewidth = 1, color = "#374e8e") +
-  scale_x_date(limits = c(date("2015-01-01"), today()), date_breaks = "1 year", date_labels = "%y") +
+  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%y") +
   scale_y_continuous(limits = c(17e3, 21e3), labels = label_number(suffix = "K", scale = 1e-3)) +
   theme_bw() +
   labs(
@@ -205,7 +205,7 @@ gdi |>
     x = "", y = ""
   )
 
-ggsave(filename = "Macro_Snapshot/GDPBreakdown/realGDI.png", height = 8, width = 4)
+ggsave(filename = "Macro_Snapshot/GDPBreakdown/realGDI.png", width = 8, height = 4)
 graphics.off()
 
 # END

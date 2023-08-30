@@ -14,8 +14,8 @@ library(fredr)
 library(tidyverse)
 library(scales)
 library(ggtext)
-library(tsbox)
-library(xts)
+
+start_date <- "2015-01-01"
 
 ### Personal Consumption Expenditures (PCE) Inflation ----
 params <- list(
@@ -28,7 +28,7 @@ df |>
   ggplot(mapping = aes(x = date, y = value, color = series_id)) +
   geom_line(linewidth = 1) +
   geom_hline(yintercept = 2, linetype = "dashed", color = "black", show.legend = NULL) +
-  scale_x_date(limits = c(date("2015-01-01"), NA), date_breaks = "1 year", date_labels = "%y") +
+  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +
   scale_y_continuous(limits = c(0, 8)) +
   scale_color_manual(values = c("#374e8e", "#ac004f")) +
   theme_bw() +
@@ -58,7 +58,7 @@ df |>
   ggplot(mapping = aes(x = date, y = value, color = series_id)) +
   geom_line(linewidth = 1) +
   geom_hline(yintercept = 0, linetype = "dashed", color = "black", show.legend = NULL) +
-  scale_x_date(limits = c(date("2015-01-01"), NA), date_breaks = "1 year", date_labels = "%y") +
+  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +
   scale_y_continuous(limits = c(0, 10), breaks = c(0, 2, 4, 6, 8, 10)) +
   scale_color_manual(values = c("#374e8e", "#ac004f")) +
   theme_bw() +
@@ -87,7 +87,7 @@ df |>
   ggplot(mapping = aes(x = date, y = value, color = series_id)) +
   geom_line(linewidth = 1) +
   geom_hline(yintercept = 0, linetype = "dashed", color = "black", show.legend = NULL) +
-  scale_x_date(limits = c(date("2015-01-01"), NA), date_breaks = "1 year", date_labels = "%y") +
+  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +
   scale_y_continuous(limits = c(-10, 20)) +
   scale_color_manual(values = c("#ac004f", "#374e8e")) +
   theme_bw() +
@@ -116,7 +116,7 @@ df |>
   select(date, series_id, value) |> 
   ggplot(mapping = aes(x = date, y = value, color = series_id)) +
   geom_line(linewidth = 1) +
-  scale_x_date(limits = c(date("2015-01-01"), NA), date_breaks = "1 year", date_labels = "%y") +
+  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +
   scale_y_continuous(limits = c(0, 8)) +
   scale_color_manual(values = c("#478c5b", "#374e8e", "#ac004f")) +
   theme_bw() +
@@ -139,7 +139,7 @@ stlppm |>
   ggplot(mapping = aes(x = date, y = value)) +
   geom_line(linewidth = 1, color = "#374e8e") +
   geom_hline(yintercept = 0.5, linetype = "dashed", color = "black", show.legend = NULL) +
-  scale_x_date(limits = c(date("2015-01-01"), NA), date_breaks = "1 year", date_labels = "%y") +
+  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +
   scale_y_continuous(limits = c(0, 1.25), breaks = c(0, 0.25, 0.5, 0.75, 1, 1.25)) +
   theme_bw() +
   labs(
@@ -160,7 +160,7 @@ mich |>
   select(date, value) |> 
   ggplot(mapping = aes(x = date, y = value)) +
   geom_line(color = "#374e8e", linewidth = 1) +
-  scale_x_date(limits = c(date("2015-01-01"), NA), date_breaks = "1 year", date_labels = "%y") +
+  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +
   scale_y_continuous(limits = c(0, 6), breaks = 0:6) +
   theme_bw() +
   labs(
@@ -186,7 +186,7 @@ df |>
   select(date, series_id, value) |> 
   ggplot(mapping = aes(x = date, y = value, color = series_id)) +
   geom_line(linewidth = 1) +
-  scale_x_date(limits = c(date("2015-01-01"), NA), date_breaks = "1 year", date_labels = "%y") +
+  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%y") +
   scale_y_continuous(limits = c(0, 4)) +
   scale_color_manual(values = c("#374e8e", "#ac004f")) +
   theme_bw() +
