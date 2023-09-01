@@ -2,11 +2,9 @@
 # Other Real Indicators ----
 # ************************************************************************
 # URL: https://stlouisfed.shinyapps.io/macro-snapshot/#real
-#
 # Feel free to copy, adapt, and use this code for your own purposes at
 # your own risk.
-#
-# Matthias Spichiger, 2023 (matthias.spichiger@bluewin.ch)
+# Matthias Spichiger (matthias.spichiger@bluewin.ch)
 # ************************************************************************
 
 ## Load packages ----
@@ -16,7 +14,7 @@ library(scales)
 library(ggtext)
 
 start_date <- "2018-01-01"
-usrecdp <- read_csv(file = "Recession_Dates/NBER_Recession_Dates.csv")
+usrecdp <- read_csv(file = "Recession_Dates/NBER/US_NBER_Recession_Dates.csv")
 
 
 ### Real Personal Income ----

@@ -2,11 +2,9 @@
 # Financial Markets ----
 # ************************************************************************
 # URL: https://stlouisfed.shinyapps.io/macro-snapshot/#financial
-#
 # Feel free to copy, adapt, and use this code for your own purposes at
 # your own risk.
-#
-# Matthias Spichiger, 2023 (matthias.spichiger@bluewin.ch)
+# Matthias Spichiger (matthias.spichiger@bluewin.ch)
 # ************************************************************************
 
 ## Load packages ----
@@ -16,14 +14,7 @@ library(scales)
 library(ggtext)
 
 start_date <- "2018-01-01"
-usrecdp <- read_csv(file = "Recession_Dates/NBER_Recession_Dates.csv")
-
-# NBER based Recession Indicators:
-# - from Peak through the Trough: USRECDM
-# - from Period following the Peak through the Trough: USRECD
-# - from the Peak through the Period preceding the Trough: USRECDP
-
-# Dates of U.S. recessions as inferred by GDP-based recession indicator: JHDUSRGDPBR
+usrecdp <- read_csv(file = "Recession_Dates/NBER/US_NBER_Recession_Dates.csv")
 
 ### Effective Federal Funds Rate ----
 dff <- fredr(series_id = "DFF")
