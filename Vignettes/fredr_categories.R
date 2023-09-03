@@ -3,10 +3,7 @@
 # ************************************************************************
 # Based on Sam Boysel, 2023-04-17.
 # URL: https://sboysel.github.io/fredr/articles/fredr-categories.html
-#
-# Feel free to copy, adapt, and use this code for your own purposes at
-# your own risk.
-#
+# Feel free to copy, adapt, and use this code for your own purposes.
 # Matthias Spichiger (matthias.spichiger@bluewin.ch)
 # ************************************************************************
 

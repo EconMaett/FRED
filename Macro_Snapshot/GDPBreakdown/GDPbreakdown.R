@@ -2,8 +2,7 @@
 # Gross Domestic Product ----
 # ************************************************************************
 # URL: https://stlouisfed.shinyapps.io/macro-snapshot/#GDP
-# Feel free to copy, adapt, and use this code for your own purposes at
-# your own risk.
+# Feel free to copy, adapt, and use this code for your own purposes.
 # Matthias Spichiger (matthias.spichiger@bluewin.ch)
 # ************************************************************************
 
@@ -74,8 +73,8 @@ graphics.off()
 
 
 ### Real Private Fixed Investment ----
-# Real Private Residential Fixed Investment (PRFIC1)
-# Real Private Nonresidential Fixed Investment (PNFIC1)
+# - Real Private Residential Fixed Investment (PRFIC1)
+# - Real Private Nonresidential Fixed Investment (PNFIC1)
 params <- list(
   series_id = c("PRFIC1", "PNFIC1"),
   units = c("lin", "lin")
@@ -178,9 +177,10 @@ netexc |>
   select(date, value) |> 
   ggplot() +
   geom_line(mapping = aes(x = date, y = value), color = "#374e8e", linewidth = 1) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "black", show.legend = NULL) +
   geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
   scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
-  scale_y_continuous(limits = c(-1600, -600)) +
+  scale_y_continuous(limits = c(-1600, 0)) +
   theme_bw() +
   labs(
     title = "Real Net Exports of Goods and Services",

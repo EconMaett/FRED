@@ -2,9 +2,7 @@
 # NBER Recession Dates ----
 # ************************************************************************
 # URL: https://fredhelp.stlouisfed.org/fred/data/understanding-the-data/recession-bars/
-# Feel free to copy, adapt, and use this code for your own purposes at
-# your own risk.
-#
+# Feel free to copy, adapt, and use this code for your own purposes.
 # Matthias Spichiger (matthias.spichiger@bluewin.ch)
 # ************************************************************************
 

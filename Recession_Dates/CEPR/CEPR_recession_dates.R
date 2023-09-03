@@ -2,8 +2,7 @@
 # CEPR recession Dates ----
 # ************************************************************************
 # URL: https://cepr.org/about/news/latest-findings-cepr-eabcn-euro-area-business-cycle-dating-committee-eabcdc-june-2023
-# Feel free to copy, adapt, and use this code for your own purposes at
-# your own risk.
+# Feel free to copy, adapt, and use this code for your own purposes.
 # Matthias Spichiger (matthias.spichiger@bluewin.ch)
 # ************************************************************************
 

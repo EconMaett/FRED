@@ -2,8 +2,7 @@
 # Inflation ----
 # ************************************************************************
 # URL: https://stlouisfed.shinyapps.io/macro-snapshot/#inflation
-# Feel free to copy, adapt, and use this code for your own purposes at
-# your own risk.
+# Feel free to copy, adapt, and use this code for your own purposes.
 # Matthias Spichiger (matthias.spichiger@bluewin.ch)
 # ************************************************************************
 
@@ -25,11 +24,12 @@ df <- purrr::pmap_dfr(.l = params, .f = ~fredr(series_id = .x, units = .y))
 df |> 
   select(date, series_id, value) |> 
   ggplot() +
+  geom_hline(yintercept = 2, linetype = "solid", color = "darkgrey", show.legend = NULL) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "black", show.legend = NULL) +
   geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
   geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
   scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
-  scale_y_continuous(limits = c(0, 8)) +
-  geom_hline(yintercept = 2, linetype = "dashed", color = "black", show.legend = NULL) +
+  scale_y_continuous(limits = c(-2, 12), breaks = seq(-2, 12, 2)) +
   scale_color_manual(values = c("#374e8e", "#ac004f")) +
   theme_bw() +
   labs(
@@ -46,8 +46,8 @@ graphics.off()
 
 ### Consumer Price Index (CPI) Inflation ----
 # Consumer Price Index of All Urban Consumers: All Items
-# Less Food and Energy
-# in U.S. City Average
+# - Less Food and Energy 
+# - in U.S. City Average
 params <- list(
   series_id = c("CPIAUCSL", "CPILFESL"),
   units = c("pc1", "pc1")
@@ -56,11 +56,12 @@ df <- purrr::pmap_dfr(.l = params, .f = ~fredr(series_id = .x, units = .y))
 df |> 
   select(date, series_id, value) |> 
   ggplot() +
-  geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
+  geom_hline(yintercept = 2, linetype = "solid", color = "darkgrey", show.legend = NULL) +
   geom_hline(yintercept = 0, linetype = "dashed", color = "black", show.legend = NULL) +
+  geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
   geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
   scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
-  scale_y_continuous(limits = c(0, 10), breaks = c(0, 2, 4, 6, 8, 10)) +
+  scale_y_continuous(limits = c(-2, 12), breaks = seq(-2, 12, 2)) +
   scale_color_manual(values = c("#374e8e", "#ac004f")) +
   theme_bw() +
   labs(
@@ -76,8 +77,9 @@ graphics.off()
   
 
 ### Producer Price Index (PPI) Inflation ----
-# Producer Price Index by Commodity: Final Demand
-# Less Foods and Energy
+# Producer Price Index by Commodity: 
+# - Final Demand
+# - Less Foods and Energy
 params <- list(
   series_id = c("PPIFIS", "PPIFES"),
   units = c("pc1", "pc1")
@@ -86,11 +88,12 @@ df <- purrr::pmap_dfr(.l = params, .f = ~fredr(series_id = .x, units = .y))
 df |> 
   select(date, series_id, value) |> 
   ggplot() +
-  geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
+  geom_hline(yintercept = 2, linetype = "solid", color = "darkgrey", show.legend = NULL) +
   geom_hline(yintercept = 0, linetype = "dashed", color = "black", show.legend = NULL) +
+  geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
   geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
   scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
-  scale_y_continuous(limits = c(-10, 20)) +
+  scale_y_continuous(limits = c(-2, 12), breaks = seq(-2, 12, 2)) +
   scale_color_manual(values = c("#ac004f", "#374e8e")) +
   theme_bw() +
   labs(
@@ -106,9 +109,9 @@ graphics.off()
 
 
 ### Alternative Core Inflation Measures ----
-# Trimmed Mean PCE Inflation Rate
-# 16% Trimmed-Mean Consumer Price Index
-# Median Consumer Price Index
+# - Trimmed Mean PCE Inflation Rate
+# - 16% Trimmed-Mean Consumer Price Index
+# - Median Consumer Price Index
 params <- list(
   series_id = c("PCETRIM12M159SFRBDAL", "TRMMEANCPIM159SFRBCLE", "MEDCPIM159SFRBCLE"),
   units = c("lin", "lin", "lin")
@@ -117,10 +120,12 @@ df <- purrr::pmap_dfr(.l = params, .f = ~fredr(series_id = .x, units = .y))
 df |> 
   select(date, series_id, value) |> 
   ggplot() +
+  geom_hline(yintercept = 2, linetype = "solid", color = "darkgrey", show.legend = NULL) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "black", show.legend = NULL) +
   geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
   geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
   scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
-  scale_y_continuous(limits = c(0, 8)) +
+  scale_y_continuous(limits = c(-2, 12), breaks = seq(-2, 12, 2)) +
   scale_color_manual(values = c("#478c5b", "#374e8e", "#ac004f")) +
   theme_bw() +
   labs(
@@ -141,7 +146,7 @@ stlppm |>
   select(date, value) |> 
   ggplot() +
   geom_line(mapping = aes(x = date, y = value), linewidth = 1, color = "#374e8e") +
-  geom_hline(yintercept = 0.5, linetype = "dashed", color = "black", show.legend = NULL) +
+  geom_hline(yintercept = 0.5, linetype = "solid", color = "darkgrey", show.legend = NULL) +
   geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
   scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
   scale_y_continuous(limits = c(0, 1.25), breaks = c(0, 0.25, 0.5, 0.75, 1, 1.25)) +
@@ -163,6 +168,7 @@ mich <- fredr(series_id = "MICH")
 mich |> 
   select(date, value) |> 
   ggplot() +
+  geom_hline(yintercept = 2, linetype = "solid", color = "darkgrey", show.legend = NULL) +
   geom_line(mapping = aes(x = date, y = value), color = "#374e8e", linewidth = 1) +
   geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
   scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +  scale_y_continuous(limits = c(0, 6), breaks = 0:6) +
@@ -185,10 +191,12 @@ params <- list(
   series_id = c("T5YIE", "T5YIFR"),
   units = c("lin", "lin")
 )
-df <- purrr::pmap_dfr(.l = params, .f = ~fredr(series_id = .x, units = .y))
+df <- purrr::pmap_dfr(.l = params, .f = ~fredr(series_id = .x, units = .y)) |> 
+  fill(value)
 df |> 
   select(date, series_id, value) |> 
   ggplot() +
+  geom_hline(yintercept = 2, linetype = "solid", color = "darkgrey", show.legend = NULL) +
   geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
   geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
   scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
