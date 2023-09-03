@@ -175,7 +175,7 @@ mich |>
   geom_line(mapping = aes(x = date, y = value), color = "#374e8e", linewidth = 1) +
   geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
   scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +  scale_y_continuous(limits = c(0, 6), breaks = 0:6) +
-  scale_y_continuous(limits = c(0, 5), breaks = seq(0, 5, 1)) +
+  scale_y_continuous(limits = c(0, 6), breaks = seq(0, 6, 1)) +
   theme_bw() +
   labs(
     title = "Year-Ahead Inflation Expectations",
