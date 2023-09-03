@@ -147,9 +147,11 @@ stlppm |>
   ggplot() +
   geom_line(mapping = aes(x = date, y = value), linewidth = 1, color = "#374e8e") +
   geom_hline(yintercept = 0.5, linetype = "solid", color = "darkgrey", show.legend = NULL) +
+  geom_hline(yintercept = 0, linetype = "solid", color = "black", show.legend = NULL) +  
+  geom_hline(yintercept = 1, linetype = "solid", color = "black", show.legend = NULL) +
   geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
   scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
-  scale_y_continuous(limits = c(0, 1.25), breaks = c(0, 0.25, 0.5, 0.75, 1, 1.25)) +
+  scale_y_continuous(limits = c(0, 1), breaks = seq(0, 1, 0.25)) +
   theme_bw() +
   labs(
     title = "St. Louis Fed Price Pressures Measure",
@@ -169,6 +171,7 @@ mich |>
   select(date, value) |> 
   ggplot() +
   geom_hline(yintercept = 2, linetype = "solid", color = "darkgrey", show.legend = NULL) +
+  geom_hline(yintercept = 0, linetype = "solid", color = "black", show.legend = NULL) +  
   geom_line(mapping = aes(x = date, y = value), color = "#374e8e", linewidth = 1) +
   geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
   scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +  scale_y_continuous(limits = c(0, 6), breaks = 0:6) +
@@ -197,6 +200,7 @@ df |>
   select(date, series_id, value) |> 
   ggplot() +
   geom_hline(yintercept = 2, linetype = "solid", color = "darkgrey", show.legend = NULL) +
+  geom_hline(yintercept = 0, linetype = "solid", color = "black", show.legend = NULL) +  
   geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
   geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
   scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
