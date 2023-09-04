@@ -14,4 +14,8 @@ This repository contains code to access *nowcasts* - that is forecasts for the p
 
 - The New York Fed's [Weekly Economic Index (WEI)](https://www.newyorkfed.org/research/policy/weekly-economic-index#/)
 
+- The [The U.S. Census Bureau Index of Economic Activity (IDEA)](https://www.census.gov/economic-indicators/econ_assets/econindex/index.html) 
 
+- The Philadelphia Fed's [State Coincident Indexes](https://www.philadelphiafed.org/surveys-and-data/regional-economic-analysis/state-coincident-indexes)
+
+- The Chicago Fed's [National Activity Index (CFNAI)](https://www.chicagofed.org/research/data/cfnai/current-data)
