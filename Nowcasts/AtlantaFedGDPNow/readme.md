@@ -1,0 +1,7 @@
+# GDPNow
+
+[GDPNow](https://www.atlantafed.org/cqer/research/gdpnow.aspx?panel=1) is a nowcasting model for gross domestic product (GDP) growth that synthesizes the bridge equation approach relating GDP subcomponents to monthly source data with factor model and Bayesian vector autoregression approaches. The GDPNow model forecasts GDP growth by aggregating **13 subcomponents that make up GDP** with the chain-weighting methodology used by the US Bureau of Economic Analysis.
+
+The Federal Reserve Bank of Atlanta's GDPNow release complements the quarterly GDP release from the Bureau of Economic Analysis (BEA). The Atlanta Fed recalculates and updates their GDPNow forecasts (called "nowcasts") throughout the quarter as new data are released, up until the BEA releases its "advance estimate" of GDP for that quarter. The St. Louis Fed constructs a quarterly time series for this dataset, in which both historical and current observations values are combined. In general, the most-current observation is revised multiple times throughout the quarter. The final forecasted value (before the BEA's release of the advance estimate of GDP) is the static, historical value for that quarter.
+
+The Contributions to percent change in GDPNow represent the contribution in percentage points that the nowcast for a component of GDP provides to real GDP growth

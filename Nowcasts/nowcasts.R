@@ -2,17 +2,6 @@
 
 ## GDP ----
 
-### St. Louis Fed Economic News Index: Real GDP Nowcast (STLENI)	
-# URL: https://research.stlouisfed.org/publications/review/2016/12/05/a-macroeconomic-news-index-for-constructing-nowcasts-of-u-s-real-gross-domestic-product-growth/
-
-
-### Atlanta Fed  GDPNow (GDPNOW)	
-# URL: https://www.atlantafed.org/cqer/research/gdpnow.aspx?panel=1
-
-### New York Fed Weekly Economic Index (WEI)
-# URL: https://www.newyorkfed.org/research/policy/weekly-economic-index#/
-# - Weekly Economic Index (Lewis-Mertens-Stock) (WEI)	
-
 ### Brave-Butters-Kelley Indexes (BBKI)
 # URL:https://www.ibrc.indiana.edu/bbki/
 # Matlab Code: https://www.chicagofed.org/publications/bbki/index
@@ -37,20 +26,8 @@
 ### U.S. Census Bureau Index of Economic Activity (IDEA)
 # URL: https://www.census.gov/economic-indicators/econ_assets/econindex/index.html) 
 
-### Philadelphia Fed State Coincident Indexes
-# URL: https://www.philadelphiafed.org/surveys-and-data/regional-economic-analysis/state-coincident-indexes
-# - Coincident Economic Activity Index for the United States (USPHCI) 
-
-### Chicago Fed National Activity Index
-# URL: https://www.chicagofed.org/research/data/cfnai/current-data
-# - Chicago Fed National Activity Index (CFNAI) 
-# - Chicago Fed National Activity Index: Three Month Moving Average (CFNAIMA3) 
-# - Chicago Fed National Activity Index: Diffusion Index (CFNAIDIFF) 
-# - Chicago Fed National Activity Index: Sales, Orders and Inventories (SOANDI) 
-# - Chicago Fed National Activity Index: Production and Income (PANDI) 
-# - Chicago Fed National Activity Index: Employment, Unemployment and Hours (EUANDH) 
-# - Chicago Fed National Activity Index: Personal Consumption and Housing (CANDH) 
-
+### Euro-Area GDP Nowcast
+# URL: https://www.euroareanowcast.com/home
 
 ## Inflation ----
 

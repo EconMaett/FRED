@@ -1,0 +1,3 @@
+# St. Louis Fed Economic News Index (ENI)
+
+[St. Louis Fed’s Economic News Index (ENI)](https://research.stlouisfed.org/publications/review/2016/12/05/a-macroeconomic-news-index-for-constructing-nowcasts-of-u-s-real-gross-domestic-product-growth/) uses economic content from key monthly economic data releases to forecast the growth of real GDP during that quarter. In general, the most-current observation is revised multiple times throughout the quarter. The final forecasted value (before the BEA’s release of the advance estimate of GDP) is the static, historical value for that quarter.
