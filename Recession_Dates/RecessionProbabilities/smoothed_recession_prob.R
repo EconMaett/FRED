@@ -39,7 +39,7 @@ recprousm156n |>
     x = "", y = ""
   )
 
-ggsave(filename = "Recession_Dates/SmoothedRecessionProbabilities/RecessionProb.png", width = 8, height = 4)
+ggsave(filename = "Recession_Dates/RecessionProbabilities/RecessionProb.png", width = 8, height = 4)
 graphics.off()
 
 # END

@@ -7,24 +7,66 @@
 # ************************************************************************
 
 ## Load packages ----
+
+## Load packages ----
 library(fredr)
 library(tidyverse)
-library(rvest)
+library(scales)
+library(ggtext)
 
-# - SAHMREALTIME: (Monthly) Real-time Sahm Rule Recession Indicator 
-# Sahm Recession Indicator signals the start of a recession when the three-month moving average 
-# of the national unemployment rate (U3) rises by 0.50 percentage points or more relative to its 
-# low during the previous 12 months.
-# This indicator is based on "real-time" data, that is, the unemployment rate 
-# (and the recent history of unemployment rates) that were available in a given month. 
-# The BLS revises the unemployment rate each year at the beginning of January, 
-# when the December unemployment rate for the prior year is published. 
-# Revisions to the seasonal factors can affect estimates in recent years. 
-# Otherwise the unemployment rate does not revise.
+start_date <- "2000-01-01"
+usrecdp <- read_csv(file = "Recession_Dates/NBER/US_NBER_Midpoint_Daily_Recession_Dates.csv")
 
+## Load the data ----
+params <- list(
+  series_id = c("SAHMREALTIME", "SAHMCURRENT", "UNRATE"),
+  units = c("lin", "lin")
+)
+df <- purrr::pmap_dfr(.l = params, .f = ~fredr(series_id = .x, units = .y)) |> 
+  select(date, series_id, value)
 
+### Sahm Rule Recession Indicator -----
+df |> 
+  filter(series_id == "SAHMCURRENT") |> 
+  ggplot() +
+  geom_hline(yintercept = 0.5, linetype = "solid", color = "#ac004f", show.legend = NULL) +
+  geom_hline(yintercept = 0, linetype = "solid", color = "black", show.legend = NULL) +
+  geom_line(mapping = aes(x = date, y = value), linewidth = 1, color = "#374e8e") +
+  geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.2) +
+  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%y") +
+  scale_y_continuous(limits = c(-1, 10), breaks = seq(-1, 10, 1)) +
+  theme_bw() +
+  labs(
+    title = "Sahm Rule Recession Indicator",
+    subtitle = "<span style = 'color: #374e8e;'>3-month moving average of the national unemployment rate (U3) relative to its 12-month low</span> and <span style = 'color: #ac004f;'>0.5 Threshold</span>",
+    caption = "Graph created by @econmaett with data from FRED.",
+    x = "", y = ""
+  ) +
+  theme(plot.subtitle = element_markdown(), legend.position = "none")
 
-# - SAHMCURRENT: (Monthly) Sahm Rule Recession Indicator 
-# Sahm Recession Indicator signals the start of a recession when the three-month moving average
-# of the national unemployment rate (U3) rises by 0.50 percentage points or more relative to its 
-# low during the previous 12 months.
+ggsave(filename = "Recession_Dates/SahmRule/CurrentSahmRule.png", width = 8, height = 4)
+graphics.off()
+
+### Real-time Sahm Rule Recession Indicator ----
+df |> 
+  filter(series_id == "SAHMREALTIME") |> 
+  ggplot() +
+  geom_hline(yintercept = 0.5, linetype = "solid", color = "#ac004f", show.legend = NULL) +
+  geom_hline(yintercept = 0, linetype = "solid", color = "black", show.legend = NULL) +
+  geom_line(mapping = aes(x = date, y = value), linewidth = 1, color = "#374e8e") +
+  geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.2) +
+  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%y") +
+  scale_y_continuous(limits = c(-1, 10), breaks = seq(-1, 10, 1)) +
+  theme_bw() +
+  labs(
+    title = "Real-Time Sahm Rule Recession Indicator",
+    subtitle = "<span style = 'color: #374e8e;'>3-month moving average of the national unemployment rate (U3) relative to its 12-month low</span> and <span style = 'color: #ac004f;'>0.5 Threshold</span>",
+    caption = "Graph created by @econmaett with data from FRED.",
+    x = "", y = ""
+  ) +
+  theme(plot.subtitle = element_markdown(), legend.position = "none")
+
+ggsave(filename = "Recession_Dates/SahmRule/RealTimeSahmRule.png", width = 8, height = 4)
+graphics.off()
+
+# END
