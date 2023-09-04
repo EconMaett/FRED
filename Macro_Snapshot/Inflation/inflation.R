@@ -13,7 +13,7 @@ library(scales)
 library(ggtext)
 
 start_date <- "2018-01-01"
-usrecdp <- read_csv(file = "Recession_Dates/NBER/US_NBER_Recession_Dates.csv")
+usrecdp <- read_csv(file = "Recession_Dates/NBER/US_NBER_Midpoint_Daily_Recession_Dates.csv")
 
 ### Personal Consumption Expenditures (PCE) Inflation ----
 params <- list(
@@ -27,7 +27,7 @@ df |>
   geom_hline(yintercept = 2, linetype = "solid", color = "darkgrey", show.legend = NULL) +
   geom_hline(yintercept = 0, linetype = "solid", color = "black", show.legend = NULL) +
   geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
-  geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
+  geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
   scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
   scale_y_continuous(limits = c(-2, 12), breaks = seq(-2, 12, 2)) +
   scale_color_manual(values = c("#374e8e", "#ac004f")) +
@@ -59,7 +59,7 @@ df |>
   geom_hline(yintercept = 2, linetype = "solid", color = "darkgrey", show.legend = NULL) +
   geom_hline(yintercept = 0, linetype = "solid", color = "black", show.legend = NULL) +
   geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
-  geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
+  geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
   scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
   scale_y_continuous(limits = c(-2, 12), breaks = seq(-2, 12, 2)) +
   scale_color_manual(values = c("#374e8e", "#ac004f")) +
@@ -91,7 +91,7 @@ df |>
   geom_hline(yintercept = 2, linetype = "solid", color = "darkgrey", show.legend = NULL) +
   geom_hline(yintercept = 0, linetype = "solid", color = "black", show.legend = NULL) +
   geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
-  geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
+  geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
   scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
   scale_y_continuous(limits = c(-2, 12), breaks = seq(-2, 12, 2)) +
   scale_color_manual(values = c("#ac004f", "#374e8e")) +
@@ -123,7 +123,7 @@ df |>
   geom_hline(yintercept = 2, linetype = "solid", color = "darkgrey", show.legend = NULL) +
   geom_hline(yintercept = 0, linetype = "solid", color = "black", show.legend = NULL) +
   geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
-  geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
+  geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
   scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
   scale_y_continuous(limits = c(-2, 12), breaks = seq(-2, 12, 2)) +
   scale_color_manual(values = c("#478c5b", "#374e8e", "#ac004f")) +
@@ -149,7 +149,7 @@ stlppm |>
   geom_hline(yintercept = 0.5, linetype = "solid", color = "darkgrey", show.legend = NULL) +
   geom_hline(yintercept = 0, linetype = "solid", color = "black", show.legend = NULL) +  
   geom_hline(yintercept = 1, linetype = "solid", color = "black", show.legend = NULL) +
-  geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
+  geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
   scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
   scale_y_continuous(limits = c(0, 1), breaks = seq(0, 1, 0.25)) +
   theme_bw() +
@@ -173,7 +173,7 @@ mich |>
   geom_hline(yintercept = 2, linetype = "solid", color = "darkgrey", show.legend = NULL) +
   geom_hline(yintercept = 0, linetype = "solid", color = "black", show.legend = NULL) +  
   geom_line(mapping = aes(x = date, y = value), color = "#374e8e", linewidth = 1) +
-  geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
+  geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
   scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +  scale_y_continuous(limits = c(0, 6), breaks = 0:6) +
   scale_y_continuous(limits = c(0, 6), breaks = seq(0, 6, 1)) +
   theme_bw() +
@@ -203,7 +203,7 @@ df |>
   geom_hline(yintercept = 2, linetype = "solid", color = "darkgrey", show.legend = NULL) +
   geom_hline(yintercept = 0, linetype = "solid", color = "black", show.legend = NULL) +  
   geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
-  geom_rect(data = usrecdp, aes(xmin = Peak, xmax = Trough, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
+  geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
   scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
   scale_y_continuous(limits = c(0, 5), breaks = seq(0, 5, 1)) +
   scale_color_manual(values = c("#374e8e", "#ac004f")) +
