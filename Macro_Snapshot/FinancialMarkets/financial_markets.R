@@ -13,7 +13,7 @@ library(scales)
 library(ggtext)
 
 start_date <- "2018-01-01"
-usrecdp <- read_csv(file = "Recession_Dates/NBER/US_NBER_Recession_Dates.csv")
+usrecdp <- read_csv(file = "Recession_Dates/NBER/us")
 
 ### Effective Federal Funds Rate ----
 dff <- fredr(series_id = "DFF")
