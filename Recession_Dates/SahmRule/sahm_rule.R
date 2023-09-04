@@ -20,8 +20,9 @@ usrecdp <- read_csv(file = "Recession_Dates/NBER/US_NBER_Midpoint_Daily_Recessio
 ## Load the data ----
 params <- list(
   series_id = c("SAHMREALTIME", "SAHMCURRENT", "UNRATE"),
-  units = c("lin", "lin")
+  units = c("lin", "lin", "lin")
 )
+
 df <- purrr::pmap_dfr(.l = params, .f = ~fredr(series_id = .x, units = .y)) |> 
   select(date, series_id, value)
 
@@ -44,7 +45,7 @@ df |>
   ) +
   theme(plot.subtitle = element_markdown(), legend.position = "none")
 
-ggsave(filename = "Recession_Dates/SahmRule/CurrentSahmRule.png", width = 8, height = 4)
+ggsave(filename = "Recession_Dates/SahmRule/SahmRuleCurrent.png", width = 8, height = 4)
 graphics.off()
 
 ### Real-time Sahm Rule Recession Indicator ----
@@ -66,7 +67,7 @@ df |>
   ) +
   theme(plot.subtitle = element_markdown(), legend.position = "none")
 
-ggsave(filename = "Recession_Dates/SahmRule/RealTimeSahmRule.png", width = 8, height = 4)
+ggsave(filename = "Recession_Dates/SahmRule/SahmRuleRealTime.png", width = 8, height = 4)
 graphics.off()
 
 # END
