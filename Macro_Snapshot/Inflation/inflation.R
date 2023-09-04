@@ -146,8 +146,8 @@ stlppm |>
   select(date, value) |> 
   ggplot() +
   geom_line(mapping = aes(x = date, y = value), linewidth = 1, color = "#374e8e") +
-  geom_hline(yintercept = 0.5, linetype = "solid", color = "darkgrey", show.legend = NULL) +
   geom_hline(yintercept = 0, linetype = "solid", color = "black", show.legend = NULL) +  
+  geom_hline(yintercept = 0.5, linetype = "solid", color = "darkgrey", show.legend = NULL) +
   geom_hline(yintercept = 1, linetype = "solid", color = "black", show.legend = NULL) +
   geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
   scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
