@@ -30,7 +30,7 @@ df |>
   ggplot() +
   geom_hline(yintercept = 0, linetype = "solid", color = "darkgrey", show.legend = NULL) +
   geom_line(mapping = aes(x = date, y = value), linewidth = 1, color = "#374e8e") +
-  geom_rect(data = usrecdp, aes(xmin = recession_start , xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.2) +
+  geom_rect(data = usrecdp, aes(xmin = recession_start , xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.3) +
   scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
   scale_y_continuous(limits = c(-25e3, 5e3), labels = label_number(suffix = "K", scale = 1e-3)) +
   theme_bw() +
@@ -52,7 +52,7 @@ df |>
   ggplot() +
   geom_hline(yintercept = 0, linetype = "solid", color = "darkgrey", show.legend = NULL) +
   geom_line(mapping = aes(x = date, y = value), linewidth = 1, color = "#374e8e") +
-  geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.2) +
+  geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.3) +
   scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
   scale_y_continuous(limits = c(-25e3, 10e3), labels = label_number(suffix = "K", scale = 1e-3)) +
   theme_bw() +
@@ -75,7 +75,7 @@ df |>
   ggplot() +
   geom_hline(yintercept = 0, linetype = "solid", color = "darkgrey", show.legend = NULL) +
   geom_line(mapping = aes(x = date, y = value), linewidth = 1, color = "#374e8e") +
-  geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.2) +
+  geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.3) +
   scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
   scale_y_continuous(limits = c(-20, 20), breaks = seq(-20, 20, 5)) +
   theme_bw() +
@@ -97,7 +97,7 @@ df |>
   ggplot() +
   geom_hline(yintercept = 0, linetype = "solid", color = "darkgrey", show.legend = NULL) +
   geom_line(mapping = aes(x = date, y = value), linewidth = 1, color = "#374e8e") +
-  geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.2) +
+  geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.3) +
   scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
   scale_y_continuous(limits = c(-20, 30), breaks = seq(-20, 30, 10)) +
   theme_bw() +
@@ -120,7 +120,7 @@ df |>
   ggplot() +
   geom_hline(yintercept = 0, linetype = "solid", color = "darkgrey", show.legend = NULL) +
   geom_line(mapping = aes(x = date, y = value), linewidth = 1, color = "#374e8e") +
-  geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.2) +
+  geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.3) +
   scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
   scale_y_continuous(limits = c(-10, 10), breaks = seq(-10, 10, 5)) +
   theme_bw() +
@@ -142,7 +142,7 @@ df |>
   ggplot() +
   geom_hline(yintercept = 0, linetype = "solid", color = "darkgrey", show.legend = NULL) +
   geom_line(mapping = aes(x = date, y = value), linewidth = 1, color = "#374e8e") +
-  geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.2) +
+  geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.3) +
   scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
   scale_y_continuous(limits = c(-20, 30), breaks = seq(-20, 30, 10)) +
   theme_bw() +
@@ -166,7 +166,7 @@ df |>
   ggplot() +
   geom_hline(yintercept = 0, linetype = "solid", color = "darkgrey", show.legend = NULL) +
   geom_line(mapping = aes(x = date, y = value), linewidth = 1, color = "#374e8e") +
-  geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.2) +
+  geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.3) +
   scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
   scale_y_continuous(limits = c(-40, 40), breaks = seq(-40, 40, 10)) +
   theme_bw() +
@@ -188,7 +188,7 @@ df |>
   ggplot() +
   geom_hline(yintercept = 0, linetype = "solid", color = "darkgrey", show.legend = NULL) +
   geom_line(mapping = aes(x = date, y = value), linewidth = 1, color = "#374e8e") +
-  geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.2) +
+  geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.3) +
   scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
   scale_y_continuous(limits = c(-40, 40), breaks = seq(-40, 40, 10)) +
   theme_bw() +
@@ -210,7 +210,7 @@ df |>
   ggplot() +
   geom_hline(yintercept = 0, linetype = "solid", color = "darkgrey", show.legend = NULL) +
   geom_line(mapping = aes(x = date, y = value), linewidth = 1, color = "#374e8e") +
-  geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.2) +
+  geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.3) +
   scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
   scale_y_continuous(limits = c(-40, 40), breaks = seq(-40, 40, 10)) +
   theme_bw() +

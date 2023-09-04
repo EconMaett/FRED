@@ -32,7 +32,7 @@ df |>
   geom_boxplot(data = df |> filter(series_id != "GDPC1"), mapping = aes(x = date, y = value, group = date),
                show.legend = NULL, width = 50, fill = "#df7c18") +
   geom_hline(yintercept = 0, linetype = "solid", color = "black", show.legend = NULL) +
-  geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
+  geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.3) +
   scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%Y") +  scale_y_continuous(limits = c(0, 150), breaks = seq(0, 150, 25)) +
   scale_y_continuous(limits = c(-10, 15)) +
   theme_bw() +
@@ -59,7 +59,7 @@ df |>
   geom_boxplot(data = df |> filter(series_id != "UNRATE"), mapping = aes(x = date, y = value, group = date),
                show.legend = NULL, width = 50, fill = "#df7c18") +
   geom_hline(yintercept = 0, linetype = "solid", color = "black", show.legend = NULL) +
-  geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
+  geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.3) +
   scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%Y") +  scale_y_continuous(limits = c(0, 150), breaks = seq(0, 150, 25)) +
   scale_y_continuous(limits = c(0, 15), breaks = seq(0, 15, 5)) +
   theme_bw() +
@@ -97,7 +97,7 @@ df |>
                show.legend = NULL, width = 50, fill = "#ce4631") +
   geom_hline(yintercept = 0, linetype = "solid", color = "black", show.legend = NULL) +
   geom_hline(yintercept = 2, linetype = "solid", color = "darkgrey", show.legend = NULL) +
-  geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
+  geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.3) +
   scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%Y") +  scale_y_continuous(limits = c(0, 150), breaks = seq(0, 150, 25)) +
   scale_y_continuous(limits = c(0, 8), breaks = seq(0, 8, 2)) +
   theme_bw() +
@@ -121,7 +121,7 @@ df |>
   geom_boxplot(data = df |> filter(series_id != "DFF"), mapping = aes(x = date, y = value, group = date), 
                show.legend = NULL, width = 50, fill = "#df7c18") +
   geom_hline(yintercept = 0, linetype = "solid", color = "black", show.legend = NULL) +
-  geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
+  geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.3) +
   scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%Y") +  scale_y_continuous(limits = c(0, 150), breaks = seq(0, 150, 25)) +
   scale_y_continuous(limits = c(0, 8)) +
   theme_bw() +

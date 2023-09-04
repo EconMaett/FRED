@@ -1,12 +1,9 @@
 # ************************************************************************
 # Sahm Rule ----
 # ************************************************************************
-# URL: 
 # Feel free to copy, adapt, and use this code for your own purposes.
 # Matthias Spichiger (matthias.spichiger@bluewin.ch)
 # ************************************************************************
-
-## Load packages ----
 
 ## Load packages ----
 library(fredr)
@@ -33,7 +30,7 @@ df |>
   geom_hline(yintercept = 0.5, linetype = "solid", color = "#ac004f", show.legend = NULL) +
   geom_hline(yintercept = 0, linetype = "solid", color = "black", show.legend = NULL) +
   geom_line(mapping = aes(x = date, y = value), linewidth = 1, color = "#374e8e") +
-  geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.2) +
+  geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.3) +
   scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%y") +
   scale_y_continuous(limits = c(-1, 10), breaks = seq(-1, 10, 1)) +
   theme_bw() +
@@ -55,7 +52,7 @@ df |>
   geom_hline(yintercept = 0.5, linetype = "solid", color = "#ac004f", show.legend = NULL) +
   geom_hline(yintercept = 0, linetype = "solid", color = "black", show.legend = NULL) +
   geom_line(mapping = aes(x = date, y = value), linewidth = 1, color = "#374e8e") +
-  geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.2) +
+  geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.3) +
   scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%y") +
   scale_y_continuous(limits = c(-1, 10), breaks = seq(-1, 10, 1)) +
   theme_bw() +
