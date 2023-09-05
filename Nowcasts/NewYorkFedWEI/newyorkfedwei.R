@@ -13,7 +13,7 @@ library(scales)
 library(ggtext)
 require(RcppRoll)
 
-start_date <- "2018-01-01"
+start_date <- "2005-01-01"
 usrecdp <- read_csv(file = "Recession_Dates/NBER/US_NBER_Midpoint_Daily_Recession_Dates.csv")
 
 ## Access the data ----
