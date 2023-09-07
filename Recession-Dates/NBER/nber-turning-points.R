@@ -12,8 +12,8 @@ library(tidyverse)
 library(scales)
 library(ggtext)
 
-start_date <- "2018-01-01"
-usrecdp <- read_csv(file = "Recession-Dates/NBER/Recession-Dates-NBER_US_Daily_Midpoint.csv")
+start_date <- "2005-01-01"
+usrecdp <- read_csv(file = "Recession-Dates/NBER/Recession-Dates_NBER_US_Daily_Midpoint.csv")
 
 ## Single series ----
 params <- list(
@@ -157,72 +157,33 @@ df |>
 ggsave(filename = "Recession-Dates/NBER/TP_Real-Personal-Consumption-Expenditure.png", width = 8, height = 4)
 graphics.off()
 
-
-### GDPC1: Real Gross Domestic Product ----
-# Compounded Annual Rate of Change
+### GDP, GDI, and Average of GDP and GDI ----
+# - GDPC1: Real Gross Domestic Product
+# - A261RX1Q020SBEA: Real gross domestic income
+# - LB0000091Q020SBEA: Real Average of GDP and GDI
 df |> 
   select(date, series_id, value) |> 
-  filter(series_id == "GDPC1") |> 
+  filter(series_id %in% c("GDPC1", "A261RX1Q020SBEA", "LB0000091Q020SBEA")) |> 
   ggplot() +
   geom_hline(yintercept = 0, linetype = "solid", color = "darkgrey", show.legend = NULL) +
-  geom_line(mapping = aes(x = date, y = value), linewidth = 1, color = "#374e8e") +
+  geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
   geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.3) +
   scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
   scale_y_continuous(limits = c(-40, 40), breaks = seq(-40, 40, 10)) +
+  scale_color_manual(
+    breaks = c("GDPC1", "A261RX1Q020SBEA", "LB0000091Q020SBEA"), 
+    values = c("#374e8e", "#006d64", "#ac004f")
+    ) +
   theme_bw() +
   labs(
     title = "Real Gross Domestic Product",
-    subtitle = "Compounded Annual Rate of Change",
+    subtitle = "SAAR: <span style = 'color: #374e8e;'>GDP</span>, <span style = 'color: #006d64;'>GDI</span> and <span style = 'color: #ac004f;'>Average of GDP and GDI</span>",
     caption = "Graph created by @econmaett with data from FRED.",
     x = "", y = ""
   ) +
   theme(plot.subtitle = element_markdown(), legend.position = "none")
 
-ggsave(filename = "Recession-Dates/NBER/TP_Real-GDP.png", width = 8, height = 4)
-graphics.off()
-
-### A261RX1Q020SBEA: Real gross domestic income ----
-df |> 
-  select(date, series_id, value) |> 
-  filter(series_id == "A261RX1Q020SBEA") |> 
-  ggplot() +
-  geom_hline(yintercept = 0, linetype = "solid", color = "darkgrey", show.legend = NULL) +
-  geom_line(mapping = aes(x = date, y = value), linewidth = 1, color = "#374e8e") +
-  geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.3) +
-  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
-  scale_y_continuous(limits = c(-40, 40), breaks = seq(-40, 40, 10)) +
-  theme_bw() +
-  labs(
-    title = "Real gross domestic income (GDI)",
-    subtitle = "Compounded Annual Rate of Change",
-    caption = "Graph created by @econmaett with data from FRED.",
-    x = "", y = ""
-  ) +
-  theme(plot.subtitle = element_markdown(), legend.position = "none")
-
-ggsave(filename = "Recession-Dates/NBER/TP_Real-GDI.png", width = 8, height = 4)
-graphics.off()
-
-### LB0000091Q020SBEA: Real Average of GDP and GDI ----
-df |> 
-  select(date, series_id, value) |> 
-  filter(series_id == "LB0000091Q020SBEA") |> 
-  ggplot() +
-  geom_hline(yintercept = 0, linetype = "solid", color = "darkgrey", show.legend = NULL) +
-  geom_line(mapping = aes(x = date, y = value), linewidth = 1, color = "#374e8e") +
-  geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.3) +
-  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
-  scale_y_continuous(limits = c(-40, 40), breaks = seq(-40, 40, 10)) +
-  theme_bw() +
-  labs(
-    title = "Real Average of GDP and GDI",
-    subtitle = "Compounded Annual Rate of Change",
-    caption = "Graph created by @econmaett with data from FRED.",
-    x = "", y = ""
-  ) +
-  theme(plot.subtitle = element_markdown(), legend.position = "none")
-
-ggsave(filename = "Recession-Dates/NBER/TP_Real-Average-GDP-GDI.png", width = 8, height = 4)
+ggsave(filename = "Recession-Dates/NBER/TP_Real-GDP-GDI-Average.png", width = 8, height = 4)
 graphics.off()
 
 # END

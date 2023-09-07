@@ -17,8 +17,8 @@ usrecdp <- read_csv(file = "Recession-Dates/NBER/Recession-Dates_NBER_US_Daily_M
 
 
 ### Real Personal Income ----
-# Real Personal Income: RPI
-# Real personal income excluding current transfer receipts: W875RX1
+# - Real Personal Income: RPI
+# - Real personal income excluding current transfer receipts: W875RX1
 params <- list(
   series_id = c("RPI", "W875RX1"),
   units = c("lin", "lin")
@@ -71,9 +71,9 @@ graphics.off()
 
 
 ### Real Retail Sales ----
-# Advance Retail Sales: Retail Trade and Food Services: RSAFS
-# Chained Consumer Price Index for All Urban Consumers:
-# All Items in U.S. City Average: SUUR0000SA0
+# - Advance Retail Sales: Retail Trade and Food Services: RSAFS
+# - Chained Consumer Price Index for All Urban Consumers:
+#   All Items in U.S. City Average: SUUR0000SA0
 params <- list(
   series_id = c("RSAFS", "SUUR0000SA0"),
   units = c("lin", "lin")
@@ -102,7 +102,7 @@ graphics.off()
 
 
 ### Light Weight Vehicle Sales ----
-# Light Weight Vehicle Sales: Autos and Light Trucks: ALTSALES
+# - Light Weight Vehicle Sales: Autos and Light Trucks: ALTSALES
 altsales <- fredr(series_id = "ALTSALES")
 altsales |> 
   select(date, value) |> 
@@ -124,7 +124,7 @@ graphics.off()
 
 
 ### Industrial Production -----
-# Industrial Production: Total Index: INDPRO
+# - Industrial Production: Total Index: INDPRO
 indpro <- fredr(series_id = "INDPRO")
 indpro |> 
   select(date, value) |> 
@@ -147,7 +147,7 @@ graphics.off()
 
 
 ### Capacity Utilization, Total Industry ----
-# Capacity Utilization: Total Index: TCU
+# - Capacity Utilization: Total Index: TCU
 tcu <- fredr(series_id = "TCU")
 tcu |> 
   select(date, value) |> 
@@ -169,8 +169,8 @@ graphics.off()
 
 
 ### Manufacturers' Non-defense Capital Goods Shipments ---
-# Manufactuers' Value of Shipments: Nondefense Captial Goods: ANDEVS
-# Producer Price Index by Commodity: Final Demand: Private Capital Equipment: WPSFD41312
+# - Manufactures' Value of Shipments: Nondefense Capital Goods: ANDEVS
+# - Producer Price Index by Commodity: Final Demand: Private Capital Equipment: WPSFD41312
 params <- list(
   series_id = c("ANDEVS", "WPSFD41312"),
   units = c("lin", "lin")
@@ -199,9 +199,9 @@ graphics.off()
 
 
 ### Manufacturers' New Durable Goods Orders ----
-# Manufactures' New Orders: Durable Goods: DGORDER
-# Producer Price Index by Commodity:
-# Final Demand: Capital Equipment: DGORDER
+# - Manufactures' New Orders: Durable Goods: DGORDER
+# - Producer Price Index by Commodity:
+#   Final Demand: Capital Equipment: DGORDER
 params <- list(
   series_id = c("DGORDER", "WPSFD41312"),
   units = c("lin", "lin")
@@ -230,9 +230,9 @@ graphics.off()
 
 
 ### New Private Housing Construction ----
-# New Privately-Owned Housing Units Authorized in Permit-Issuing Places:
-# Total Units: PERMIT
-# New Privately-Owned Housing Units Started: Total Units: HOUST
+# - New Privately-Owned Housing Units Authorized in Permit-Issuing Places:
+#   Total Units: PERMIT
+# - New Privately-Owned Housing Units Started: Total Units: HOUST
 params <- list(
   series_id = c("PERMIT", "HOUST"),
   units = c("lin", "lin")
@@ -264,10 +264,10 @@ graphics.off()
 
 
 ### Housing Prices ----
-# All-Trnasactions House Price Index for the United States: USSTHPI
-# S&P/Case-Shiller U.S. National Home Price Index: CSUSHPISA
-# Interest Rates and Price Indexes; 
-# Owner-Occupied Real Estate Zillow ZHVI Index, Level: BOGZ1FL075035253Q
+# - All-Trnasactions House Price Index for the United States: USSTHPI
+# - S&P/Case-Shiller U.S. National Home Price Index: CSUSHPISA
+# - Interest Rates and Price Indexes; 
+#   Owner-Occupied Real Estate Zillow ZHVI Index, Level: BOGZ1FL075035253Q
 params <- list(
   series_id = c("USSTHPI", "CSUSHPISA", "BOGZ1FL075035253Q"),
   units = c("pc1", "pc1", "pc1")

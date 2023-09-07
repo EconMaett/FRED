@@ -29,9 +29,6 @@ source(file = "Recession-Dates/recession-dates.R")
 usarecdm <- recession_dates(series_id = "USARECDM", frequency = "d")
 write_csv(usarecdm, file = "Recession-Dates/OECD/Recession-Dates_OECD_US_Daily_Midpoint.csv")
 
-cherecdm <- recession_dates(series_id = "CHERECDM", frequency = "d")
-write_csv(cherecdm, file = "Recession-Dates/OECD/Recession-Dates_OECD_CH_Daily_Midpoint.csv")
-
 chnrecdm <- recession_dates(series_id = "CHNRECDM", frequency = "d")
 write_csv(chnrecdm, file = "Recession-Dates/OECD/Recession-Dates_OECD_CHN_Daily_Midpoint.csv")
 
@@ -40,9 +37,6 @@ write_csv(indrecdm, file = "Recession-Dates/OECD/Recession-Dates_OECD_IND_Daily_
 
 rusrecdm <- recession_dates(series_id = "RUSRECDM", frequency = "d")
 write_csv(rusrecdm, file = "Recession-Dates/OECD/Recession-Dates_OECD_RUS_Daily_Midpoint.csv")
-
-eurorecdm <- recession_dates(series_id = "EURORECDM", frequency = "d")
-write_csv(eurorecdm, file = "Recession-Dates/OECD/Recession-Dates_OECD_EURO_Daily_Trough.csv")
 
 
 ### 2) Trough Method ----
@@ -57,9 +51,6 @@ write_csv(eurorecdm, file = "Recession-Dates/OECD/Recession-Dates_OECD_EURO_Dail
 usarecd  <- recession_dates(series_id = "USARECD", frequency = "d")
 write_csv(usarecd, file = "Recession-Dates/OECD/Recession-Dates_OECD_US_Daily_Trough.csv")
 
-cherecd  <- recession_dates(series_id = "CHERECD", frequency = "d")
-write_csv(cherecd, file = "Recession-Dates/OECD/Recession-Dates_OECD_CH_Daily_Trough.csv")
-
 chnrecd  <- recession_dates(series_id = "CHNRECD", frequency = "d")
 write_csv(chnrecd, file = "Recession-Dates/OECD/Recession-Dates_OECD_CHN_Daily_Trough.csv")
 
@@ -68,9 +59,6 @@ write_csv(indrecd, file = "Recession-Dates/OECD/Recession-Dates_OECD_IND_Daily_T
 
 rusrecd  <- recession_dates(series_id = "RUSRECD", frequency = "d")
 write_csv(rusrecd, file = "Recession-Dates/OECD/Recession-Dates_OECD_RUS_Daily_Trough.csv")
-
-eurorecd  <- recession_dates(series_id = "EURORECD", frequency = "d")
-write_csv(eurorecd, file = "Recession-Dates/OECD/Recession-Dates_OECD_EURO_Daily_Trough.csv")
 
 
 ### 3) Peak method ----
@@ -84,9 +72,6 @@ write_csv(eurorecd, file = "Recession-Dates/OECD/Recession-Dates_OECD_EURO_Daily
 usarecdp <- recession_dates(series_id = "USARECDP", frequency = "d")
 write_csv(usarecdp, file = "Recession-Dates/OECD/Recession-Dates_OECD_US_Daily_Peak.csv")
 
-cherecdp <- recession_dates(series_id = "CHERECDP", frequency = "d")
-write_csv(cherecdp, file = "Recession-Dates/OECD/Recession-Dates_OECD_CH_Daily_Peak.csv")
-
 chnrecdp <- recession_dates(series_id = "CHNRECDP", frequency = "d")
 write_csv(chnrecdp, file = "Recession-Dates/OECD/Recession-Dates_OECD_CHN_Daily_Peak.csv")
 
@@ -95,8 +80,5 @@ write_csv(indrecdp, file = "Recession-Dates/OECD/Recession-Dates_OECD_IND_Daily_
 
 rusrecdp <- recession_dates(series_id = "RUSRECDP", frequency = "d")
 write_csv(rusrecdp, file = "Recession-Dates/OECD/Recession-Dates_OECD_RUS_Daily_Peak.csv")
-
-eurorecdp <- recession_dates(series_id = "EURORECDP", frequency = "d")
-write_csv(eurorecdp, file = "Recession-Dates/OECD/Recession-Dates_OECD_EURO_Daily_Peak.csv")
 
 # END

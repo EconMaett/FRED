@@ -7,7 +7,6 @@
 # ************************************************************************
 
 ## Load packages ----
-library(fredr)
 library(tidyverse)
 library(rvest)
 
@@ -31,7 +30,7 @@ ea_cepr_rec <- read_html(cepr_url) |>
   pivot_wider(names_from = period, values_from = date) |> 
   select(-id)
 
-ea_cepr_rec <- tibble(Peak = na.omit(ea_cepr_rec$Peak), Trough = na.omit(ea_cepr_rec$Trough))
+ea_cepr_rec <- tibble(recession_start = na.omit(ea_cepr_rec$Peak), recession_end = na.omit(ea_cepr_rec$Trough))
 ea_cepr_rec
 
 ## Write the dates to a CSV file ----
