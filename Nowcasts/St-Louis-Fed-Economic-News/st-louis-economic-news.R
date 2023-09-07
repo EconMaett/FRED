@@ -29,8 +29,8 @@ df |>
   geom_hline(yintercept = 0, linetype = "solid", color = "black", show.legend = NULL) +
   geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
   geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.3) +
-  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
-  scale_y_continuous(limits = c(-40, 40), breaks = seq(-40, 40, 10)) +
+  scale_x_date(expand = c(0, 0), limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
+  scale_y_continuous(expand = c(0, 0), limits = c(-40, 40), breaks = seq(-40, 40, 10)) +
   scale_color_manual(
     values = c("#374e8e", "#478c5b"), 
     breaks = c("GDPC1", "STLENI")

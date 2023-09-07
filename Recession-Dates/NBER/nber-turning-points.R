@@ -31,8 +31,8 @@ df |>
   geom_hline(yintercept = 0, linetype = "solid", color = "darkgrey", show.legend = NULL) +
   geom_line(mapping = aes(x = date, y = value), linewidth = 1, color = "#374e8e") +
   geom_rect(data = usrecdp, aes(xmin = recession_start , xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.3) +
-  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
-  scale_y_continuous(limits = c(-25e3, 5e3), labels = label_number(suffix = "K", scale = 1e-3)) +
+  scale_x_date(expand = c(0, 0), limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
+  scale_y_continuous(expand = c(0, 0), limits = c(-25e3, 5e3), labels = label_number(suffix = "K", scale = 1e-3)) +
   theme_bw() +
   labs(
     title = "All Employees, Total Nonfarm",
@@ -53,8 +53,8 @@ df |>
   geom_hline(yintercept = 0, linetype = "solid", color = "darkgrey", show.legend = NULL) +
   geom_line(mapping = aes(x = date, y = value), linewidth = 1, color = "#374e8e") +
   geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.3) +
-  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
-  scale_y_continuous(limits = c(-25e3, 10e3), labels = label_number(suffix = "K", scale = 1e-3)) +
+  scale_x_date(expand = c(0, 0), limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
+  scale_y_continuous(expand = c(0, 0), limits = c(-25e3, 10e3), labels = label_number(suffix = "K", scale = 1e-3)) +
   theme_bw() +
   labs(
     title = "Employment Level",
@@ -76,8 +76,8 @@ df |>
   geom_hline(yintercept = 0, linetype = "solid", color = "darkgrey", show.legend = NULL) +
   geom_line(mapping = aes(x = date, y = value), linewidth = 1, color = "#374e8e") +
   geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.3) +
-  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
-  scale_y_continuous(limits = c(-20, 20), breaks = seq(-20, 20, 5)) +
+  scale_x_date(expand = c(0, 0), limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
+  scale_y_continuous(expand = c(0, 0), limits = c(-20, 20), breaks = seq(-20, 20, 5)) +
   theme_bw() +
   labs(
     title = "Industrial Production: Total Index",
@@ -98,8 +98,8 @@ df |>
   geom_hline(yintercept = 0, linetype = "solid", color = "darkgrey", show.legend = NULL) +
   geom_line(mapping = aes(x = date, y = value), linewidth = 1, color = "#374e8e") +
   geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.3) +
-  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
-  scale_y_continuous(limits = c(-20, 30), breaks = seq(-20, 30, 10)) +
+  scale_x_date(expand = c(0, 0), limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
+  scale_y_continuous(expand = c(0, 0), limits = c(-20, 30), breaks = seq(-20, 30, 10)) +
   theme_bw() +
   labs(
     title = "Real Manufacturing and Trade Industries Sales (CMRMT)",
@@ -121,8 +121,8 @@ df |>
   geom_hline(yintercept = 0, linetype = "solid", color = "darkgrey", show.legend = NULL) +
   geom_line(mapping = aes(x = date, y = value), linewidth = 1, color = "#374e8e") +
   geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.3) +
-  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
-  scale_y_continuous(limits = c(-10, 10), breaks = seq(-10, 10, 5)) +
+  scale_x_date(expand = c(0, 0), limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
+  scale_y_continuous(expand = c(0, 0), limits = c(-10, 10), breaks = seq(-10, 10, 5)) +
   theme_bw() +
   labs(
     title = "Real personal income excluding current transfer receipts",
@@ -143,8 +143,8 @@ df |>
   geom_hline(yintercept = 0, linetype = "solid", color = "darkgrey", show.legend = NULL) +
   geom_line(mapping = aes(x = date, y = value), linewidth = 1, color = "#374e8e") +
   geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.3) +
-  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
-  scale_y_continuous(limits = c(-20, 30), breaks = seq(-20, 30, 10)) +
+  scale_x_date(expand = c(0, 0), limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
+  scale_y_continuous(expand = c(0, 0), limits = c(-20, 30), breaks = seq(-20, 30, 10)) +
   theme_bw() +
   labs(
     title = "Real Personal Consumption Expenditures",
@@ -168,8 +168,8 @@ df |>
   geom_hline(yintercept = 0, linetype = "solid", color = "darkgrey", show.legend = NULL) +
   geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
   geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.3) +
-  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
-  scale_y_continuous(limits = c(-40, 40), breaks = seq(-40, 40, 10)) +
+  scale_x_date(expand = c(0, 0), limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
+  scale_y_continuous(expand = c(0, 0), limits = c(-40, 40), breaks = seq(-40, 40, 10)) +
   scale_color_manual(
     breaks = c("GDPC1", "A261RX1Q020SBEA", "LB0000091Q020SBEA"), 
     values = c("#374e8e", "#006d64", "#ac004f")

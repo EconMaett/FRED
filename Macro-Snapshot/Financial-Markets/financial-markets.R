@@ -22,9 +22,8 @@ dff |>
   ggplot() +
   geom_line(mapping = aes(x = date, y = value), linewidth = 1, color = "#374e8e") +
   geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.3) +
-  geom_hline(yintercept = 0, linetype = "solid", color = "black", show.legend = NULL) +
-  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%Y") +
-  scale_y_continuous(limits = c(0, 6), breaks = 0:6) +
+  scale_x_date(expand = c(0, 0), limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%Y") +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 6), breaks = 0:6) +
   theme_bw() +
   labs(
     title = "Effective Federal Funds Rate",
@@ -45,8 +44,8 @@ walcl |>
   ggplot() +
   geom_line(mapping = aes(x = date, y = value), linewidth = 1, color = "#374e8e") +
   geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.3) +
-  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%Y") +
-  scale_y_continuous(limits = c(0, 10e6), labels = label_number(suffix = "M", scale = 1e-6), breaks = c(0:10)*1e6) +
+  scale_x_date(expand = c(0, 0), limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%Y") +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 10e6), labels = label_number(suffix = "M", scale = 1e-6), breaks = c(0:10)*1e6) +
   theme_bw() +
   labs(
     title = "Federal Reserve Assets",
@@ -74,8 +73,8 @@ df |>
   ggplot() +
   geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
   geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.3) +
-  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%Y") +
-  scale_y_continuous(limits = c(0, 8)) +
+  scale_x_date(expand = c(0, 0), limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%Y") +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 8)) +
   scale_color_manual(values = c("#ac004f", "#374e8e", "#478c5b")) +
   theme_bw() +
   labs(
@@ -109,8 +108,8 @@ df |>
   geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
   geom_hline(yintercept = 0, linetype = "solid", color = "black", show.legend = NULL) +
   geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.3) +
-  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%Y") +
-  scale_y_continuous(limits = c(0, 6)) +
+  scale_x_date(expand = c(0, 0), limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%Y") +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 6)) +
   scale_color_manual(
     values = c("#374e8e", "#ac004f", "#478c5b", "#a07bde"), 
     breaks = c("DGS3MO", "DGS2", "DGS5", "DGS10")
@@ -144,8 +143,8 @@ df |>
   geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
   geom_hline(yintercept = 0, linetype = "solid", color = "black", show.legend = NULL) +
   geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.3) +
-  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%Y") +
-  scale_y_continuous(limits = c(-3, 3), breaks = -3:3) +
+  scale_x_date(expand = c(0, 0), limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%Y") +
+  scale_y_continuous(expand = c(0, 0), limits = c(-3, 3), breaks = -3:3) +
   scale_color_manual(
     values = c("#374e8e", "#ac004f"), 
     breaks = c("T10Y2Y", "T10Y3M")
@@ -178,8 +177,8 @@ df |>
   geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
   geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.3) +
   geom_hline(yintercept = 0, linetype = "solid", color = "black", show.legend = NULL) +
-  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%Y") +
-  scale_y_continuous(limits = c(-2, 6)) +
+  scale_x_date(expand = c(0, 0), limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%Y") +
+  scale_y_continuous(expand = c(0, 0), limits = c(-1, 6)) +
   scale_color_manual(
     values = c("#374e8e", "#ac004f", "#478c5b"), 
     breaks = c("STLFSI4", "KCFSI", "NFCI")
@@ -207,8 +206,8 @@ djia |>
   ggplot() +
   geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
   geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.3) +
-  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%Y") +
-  scale_y_continuous(limits = c(0, 40e3), labels = label_number(suffix = "K", scale = 1e-3)) +
+  scale_x_date(expand = c(0, 0), limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%Y") +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 40e3), labels = label_number(suffix = "K", scale = 1e-3)) +
   scale_color_manual(
     values = c("#374e8e"), 
     breaks = c("DJIA")
@@ -235,8 +234,8 @@ sp500 |>
   ggplot() +
   geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
   geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.3) +
-  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%Y") +
-  scale_y_continuous(limits = c(0, 5e3), labels = label_number(suffix = "K", scale = 1e-3)) +
+  scale_x_date(expand = c(0, 0), limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%Y") +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 5e3), labels = label_number(suffix = "K", scale = 1e-3)) +
   scale_color_manual(
     values = c("#ac004f"), 
     breaks = c("SP500")
@@ -269,8 +268,8 @@ df |>
   ggplot() +
   geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
   geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.3) +
-  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%Y") +
-  scale_y_continuous(limits = c(0, 12), breaks = seq(0, 12, 2)) +
+  scale_x_date(expand = c(0, 0), limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%Y") +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 12), breaks = seq(0, 12, 2)) +
   scale_color_manual(
     values = c("#374e8e", "#ac004f"), 
     breaks = c("BAA10Y", "BAMLH0A0HYM2")

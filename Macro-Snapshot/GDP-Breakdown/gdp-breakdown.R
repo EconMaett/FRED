@@ -28,8 +28,8 @@ df |>
   ggplot() +
   geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
   geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.3) +
-  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
-  scale_y_continuous(limits = c(17e3, 22e3), labels = label_number(suffix = "K", scale = 1e-3)) +
+  scale_x_date(expand = c(0, 0), limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
+  scale_y_continuous(expand = c(0, 0), limits = c(17e3, 22e3), labels = label_number(suffix = "K", scale = 1e-3)) +
   scale_color_manual(values = c("#ac004f", "#374e8e")) +
   theme_bw() +
   labs(
@@ -56,8 +56,8 @@ df |>
   ggplot() +
   geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
   geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.3) +
-  scale_x_date(limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%Y") +
-  scale_y_continuous(limits = c(0, 10e3), labels = label_number(suffix = "K", scale = 1e-3)) +
+  scale_x_date(expand = c(0, 0), limits = c(date(start_date), NA), date_breaks = "1 year", date_labels = "%Y") +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 10e3), labels = label_number(suffix = "K", scale = 1e-3)) +
   scale_color_manual(values = c("#478c5b", "#374e8e", "#ac004f")) +
   theme_bw() +
   labs(
@@ -85,8 +85,8 @@ df |>
   ggplot() +
   geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
   geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.3) +
-  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
-  scale_y_continuous(limits = c(0, 3000), labels = label_number(suffix = "B")) +
+  scale_x_date(expand = c(0, 0), limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 3000), labels = label_number(suffix = "B")) +
   scale_color_manual(values = c("#ac004f", "#374e8e")) +
   theme_bw() +
   labs(
@@ -109,7 +109,7 @@ cbic1 |>
   geom_line(mapping = aes(x = date, y = value), color = "#374e8e", linewidth = 1) +
   geom_hline(yintercept = 0, linetype = "dashed", color = "black", show.legend = NULL) +
   geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.3) +
-  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
+  scale_x_date(expand = c(0, 0), limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
   theme_bw() +
   labs(
     title = "Change in Real Private Inventories",
@@ -129,8 +129,8 @@ gcec1 |>
   ggplot() +
   geom_line(mapping = aes(x = date, y = value), color = "#374e8e", linewidth = 1) +
   geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.3) +
-  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
-  scale_y_continuous(limits = c(3000, 3500), labels = label_number(suffix = "K", scale = 1e-3)) +
+  scale_x_date(expand = c(0, 0), limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
+  scale_y_continuous(expand = c(0, 0), limits = c(3000, 3500), labels = label_number(suffix = "K", scale = 1e-3)) +
   theme_bw() +
   labs(
     title = "Real Government Consumption and Gross Investment",
@@ -155,8 +155,8 @@ df |>
   ggplot() +
   geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
   geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.3) +
-  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
-  scale_y_continuous(limits = c(0, 4500)) +
+  scale_x_date(expand = c(0, 0), limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 4500)) +
   scale_color_manual(values = c("#374e8e", "#ac004f")) +
   theme_bw() +
   labs(
@@ -179,8 +179,8 @@ netexc |>
   geom_line(mapping = aes(x = date, y = value), color = "#374e8e", linewidth = 1) +
   geom_hline(yintercept = 0, linetype = "dashed", color = "black", show.legend = NULL) +
   geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.3) +
-  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
-  scale_y_continuous(limits = c(-1600, 0)) +
+  scale_x_date(expand = c(0, 0), limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
+  scale_y_continuous(expand = c(0, 0), limits = c(-1600, 0)) +
   theme_bw() +
   labs(
     title = "Real Net Exports of Goods and Services",
@@ -200,7 +200,7 @@ gdi |>
   ggplot() +
   geom_line(mapping = aes(x = date, y = value), linewidth = 1, color = "#374e8e") +
   geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.3) +
-  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +  scale_y_continuous(limits = c(17e3, 21e3), labels = label_number(suffix = "K", scale = 1e-3)) +
+  scale_x_date(expand = c(0, 0), limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +  scale_y_continuous(expand = c(0, 0), limits = c(17e3, 21e3), labels = label_number(suffix = "K", scale = 1e-3)) +
   theme_bw() +
   labs(
     title = "Real Gross Domestic Income (GDI)",

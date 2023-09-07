@@ -13,7 +13,7 @@ library(scales)
 library(ggtext)
 
 start_date <- "2019-11-01"
-usrecdp <- read_csv(file = "Recession-Dates/OECD/Recession-Dates_OECD_CH_Daily_Midpoint.csv")
+usrecdp <- read_csv(file = "Recession-Dates/OECD/Recession-Dates_OECD_US_Daily_Midpoint.csv")
 
 ## Access the data ----
 # human and machine readable urls:
@@ -38,8 +38,8 @@ df |>
   geom_ribbon(mapping = aes(x = date, ymin = `Low (yoy)`, ymax = `High (yoy)`), fill = "#8aabfd", alpha = 0.3) +
   geom_line(mapping = aes(x = date, y = `Tracker (yoy)`), linewidth = 1, color = "#374e8e") +
   geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.3) +
-  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
-  scale_y_continuous(limits = c(-30, 40), breaks = seq(-30, 40, 10)) +
+  scale_x_date(expand = c(0, 0), limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
+  scale_y_continuous(expand = c(0, 0), limits = c(-30, 40), breaks = seq(-30, 40, 10)) +
   theme_bw() +
   labs(
     title = "<span style = 'color: #374e8e;'>OECD Weekly Tracker of Economic Activity</span>",
@@ -60,8 +60,8 @@ df |>
   geom_ribbon(mapping = aes(x = date, ymin = `Low (yo2y)`, ymax = `High (yo2y)`), fill = "#8aabfd", alpha = 0.3) +
   geom_line(mapping = aes(x = date, y = `Tracker (yo2y)`), linewidth = 1, color = "#374e8e") +
   geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.3) +
-  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
-  scale_y_continuous(limits = c(-30, 40), breaks = seq(-30, 40, 10)) +
+  scale_x_date(expand = c(0, 0), limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
+  scale_y_continuous(expand = c(0, 0), limits = c(-30, 40), breaks = seq(-30, 40, 10)) +
   theme_bw() +
   labs(
     title = "<span style = 'color: #374e8e;'>OECD Weekly Tracker of Economic Activity</span>",

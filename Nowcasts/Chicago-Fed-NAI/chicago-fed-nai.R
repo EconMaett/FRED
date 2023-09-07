@@ -50,8 +50,8 @@ rbind(gdpc1std, df) |>
   geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
   geom_hline(yintercept = 0, linetype = "solid", color = "black", show.legend = NULL) +
   geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.3) +
-  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
-  scale_y_continuous(limits = c(-10, 10)) +
+  scale_x_date(expand = c(0, 0), limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
+  scale_y_continuous(expand = c(0, 0), limits = c(-10, 10)) +
   scale_color_manual(
     values = c("#374e8e", "#478c5b"), 
     breaks = c("CFNAI", "GDPC1std")
@@ -78,8 +78,8 @@ df |>
   geom_line(mapping = aes(x = date, y = value, color = series_id), linewidth = 1) +
   geom_hline(yintercept = 0, linetype = "solid", color = "black", show.legend = NULL) +
   geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.3) +
-  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
-  scale_y_continuous(limits = c(-1, 1), breaks = seq(-1, 1, 0.25)) +
+  scale_x_date(expand = c(0, 0), limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
+  scale_y_continuous(expand = c(0, 0), limits = c(-1, 1), breaks = seq(-1, 1, 0.25)) +
   scale_color_manual(
     values = c("#374e8e", "#478c5b", "#e3b13e", "#ce4631", "#ae49a2"), 
     breaks = c("CFNAI", "PANDI", "CANDH", "SOANDI", "EUANDH")
@@ -108,8 +108,8 @@ rbind(gdpc1std, df) |>
   geom_hline(yintercept = 0, linetype = "solid", color = "black", show.legend = NULL) +
   geom_hline(yintercept = -0.70, linetype = "solid", color = "darkgrey", show.legend = NULL) +
   geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "darkgrey", alpha = 0.3) +
-  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
-  scale_y_continuous(limits = c(-10, 10)) +
+  scale_x_date(expand = c(0, 0), limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
+  scale_y_continuous(expand = c(0, 0), limits = c(-10, 10)) +
   scale_color_manual(
     values = c("#374e8e", "#478c5b"), 
     breaks = c("CFNAIMA3", "GDPC1std")
@@ -140,8 +140,8 @@ df |>
   geom_hline(yintercept = -1, linetype = "solid", color = "black", show.legend = NULL) +
   geom_line(mapping = aes(x = date, y = value), linewidth = 1, color = "#374e8e") +
   geom_rect(data = usrecdp, aes(xmin = recession_start, xmax = recession_end, ymin = -Inf, ymax = +Inf), fill = "grey", alpha = 0.2) +
-  scale_x_date(limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
-  scale_y_continuous(limits = c(-1, 1), breaks = seq(-1, 1, 0.25)) +
+  scale_x_date(expand = c(0, 0), limits = c(date(start_date), today()), date_breaks = "1 year", date_labels = "%Y") +
+  scale_y_continuous(expand = c(0, 0), limits = c(-1, 1), breaks = seq(-1, 1, 0.25)) +
   theme_bw() +
   labs(
     title = "Chicago Fed National Activity Diffusion Index",
