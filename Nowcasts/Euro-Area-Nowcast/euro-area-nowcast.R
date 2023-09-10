@@ -1,0 +1,7 @@
+# ************************************************************************
+# Euro-Area GDP Nowcast ----
+# ************************************************************************
+# URL: https://www.euroareanowcast.com/home
+# Feel free to copy, adapt, and use this code for your own purposes.
+# Matthias Spichiger (matthias.spichiger@bluewin.ch)
+# ************************************************************************

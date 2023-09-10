@@ -27,7 +27,7 @@ gdpc1std$value <- (gdpc1$value - mean(gdpc1$value, na.rm = TRUE)) / sd(gdpc1$val
 
 ### Get the correct URLs ----
 last_update <- gsub(pattern = "-", replacement = "", x = today() - wday(Sys.Date() + 1))
-input_url <- paste0("https://www.census.gov/econ_index/archive_data/Indicator_Input_Values_", last_update, ".csv")
+input_url   <- paste0("https://www.census.gov/econ_index/archive_data/Indicator_Input_Values_", last_update, ".csv")
 
 weights_url <- "https://www.census.gov/econ_index/Weights.csv"
 
@@ -78,7 +78,7 @@ index |>
   ) +
   theme(plot.title = element_markdown(), legend.position = "none")
 
-ggsave(filename = "Nowcasts/Census-Bureau-IDEA/Fig_Census-Bureau-IDEA.png", width = 8, height = 4)
+ggsave(filename = "Nowcasts/Census-Bureau_Index-of-Economic-Activity_IDEA/Fig_Census-Bureau-IDEA.png", width = 8, height = 4)
 graphics.off()
 
 ### Plot Standardized Real GDP and IDEA ----
@@ -102,7 +102,7 @@ rbind(gdpc1std, index) |>
   ) +
   theme(plot.title = element_markdown(), legend.position = "none")
 
-ggsave(filename = "Nowcasts/Census-Bureau-IDEA/Fig_Census-Bureau-IDEA-vs-real-GDP.png", width = 8, height = 4)
+ggsave(filename = "Nowcasts/Census-Bureau_Index-of-Economic-Activity_IDEA/Fig_Census-Bureau-IDEA-vs-real-GDP.png", width = 8, height = 4)
 graphics.off()
 
 # END
