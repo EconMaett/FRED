@@ -1,11 +1,8 @@
-# ***********************************************************************************
 # recession_dates.R ----
-# ***********************************************************************************
 # Function to convert recession dummy variables into data frames of recession dates
 # The function is kept in base R on purpose.
 # Matthias Spichiger (matthias.spichiger@bluewin.ch)
-# ***********************************************************************************
-recession_dates <- function(series_id, frequency = "q") {
+"recession_dates" <- function(series_id, frequency = "q") {
   
   # Load the full time series from FRED. Default frequency is quarterly.
   recession <- fredr(series_id = series_id, frequency = frequency)
