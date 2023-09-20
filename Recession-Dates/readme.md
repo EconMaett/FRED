@@ -1,13 +1,24 @@
 # Recession dates
 
-This repository contains files to access recession dates from various institutions, 
-including:
+This repository contains files to access business cycle indicators and reference dates from various sources. 
 
-- The National Bureau of Economic Research (NBER)'s [Business Cycle Dating Committee](https://www.nber.org/research/data/us-business-cycle-expansions-and-contractions)
+- United States: The [National Bureau of Economic Research (NBER)](https://www.nber.org/)'s [Business Cycle Dating Committee](https://www.nber.org/research/data/us-business-cycle-expansions-and-contractions)
 
-- The Centre for Economic Policy Research (CEPR)'s Euro Area Business Cycle Network (EABCN)'s [Business Cycle Dating Committee](https://eabcn.org/)
+- Europe: The [Centre for Economic Policy Research (CEPR)](https://cepr.org/)'s [Euro Area Business Cycle Network (EABCN)'s Business Cycle Dating Committee](https://eabcn.org/)
 
-- Interpretations of the Organisation for Economic Co-operation and Development (OECD)'s [Composite Leading Indicators (CLI) Reference Turning Points and Component Series](https://www.oecd.org/sdd/leading-indicators/oecdcompositeleadingindicatorsreferenceturningpointsandcomponentseries.htm) data
+- OECD: The [Organisation for Economic Co-operation and Development (OECD)](https://www.oecd.org/)'s [Composite Leading Indicators (CLI) Reference Turning Points and Component Series](https://www.oecd.org/sdd/leading-indicators/oecdcompositeleadingindicatorsreferenceturningpointsandcomponentseries.htm)
+
+- United Kingdom: The [National Institute of Economic and Social Research (NIESR)](https://www.niesr.ac.uk/)'s [UK Business Cycle Dating and Implications](https://www.niesr.ac.uk/publications/uk-business-cycle-dating-and-implications?type=letters-written-submissions)
+
+- France: The [French Economic Association (AFSE)](https://www.afse.fr/en/)'s [French Business Cycle Dating Committe](https://www.afse.fr/fr/cycles-eco/english-version-500228)
+
+- Japan: The [Government of Japan Cabinet Office](https://www.cao.go.jp/index-e.html)'s[ Economic and Social Research Institute (ESRI)](https://www.esri.cao.go.jp/index-e.html)'s [Index of Business Conditions](https://www.esri.cao.go.jp/en/stat/di/di-e.html)
+
+- Canada: The [C. D. Howe Institute](https://www.cdhowe.org/)'s [Business Cycle Council](https://www.cdhowe.org/council/business-cycle-council)
+
+- Spain: The [Spanish Economic Association (AEE)](http://asesec.org/en/)[ Business Cycle Dating Committee](http://www.asesec.org/CFCweb/index.php/en/)
+
+- International: [The Conference Board](https://www.conference-board.org/us/)'s [Leading Economic Indicators (LEI)](https://data-central.conference-board.org/)
 
 The function to implement recession shading is taken from the post on RPubs by [Scheler, Fabian, 2020](https://rpubs.com/FSl/609471).
 
