@@ -20,7 +20,13 @@ This repository contains files to access business cycle indicators and reference
 
 - International: [The Conference Board](https://www.conference-board.org/us/)'s [Leading Economic Indicators (LEI)](https://data-central.conference-board.org/)
 
-The function to implement recession shading is taken from the post on RPubs by [Scheler, Fabian, 2020](https://rpubs.com/FSl/609471).
+Other data-driven recession indicators for the United States are: 
+
+- James D. Hamilton's [Econbrowser REcession Indicator Index](https://econbrowser.com/recession-index) ([available on FRED](https://fred.stlouisfed.org/series/JHGDPBRINDX))
+
+- Claudia Sahm's Sahm Rule Recession Indicator ([available on FRED](https://fred.stlouisfed.org/series/SAHMCURRENT), [also in real-time](https://fred.stlouisfed.org/series/SAHMREALTIME))
+
+[Fabian Scheler](https://rpubs.com/FSl/609471) inspired a function to convert recession dummy variables into recession dates that can be used to add recession shading to time series plots.
 
 
 ## Methodology
