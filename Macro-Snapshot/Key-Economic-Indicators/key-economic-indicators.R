@@ -14,7 +14,7 @@ library(scales)
 library(ggtext)
 
 start_date <- "2018-01-01"
-usrecdp <- read_csv(file = "Recession-Dates/NBER/Recession-Dates_NBER_US_Daily_Midpoint.csv")
+usrecdp <- read_csv(file = "Recession-Dates/US_NBER/Recession-Dates_NBER_US_Daily_Midpoint.csv")
 
 
 ### Real Gross Domestic Product (GDP) Growth ----
