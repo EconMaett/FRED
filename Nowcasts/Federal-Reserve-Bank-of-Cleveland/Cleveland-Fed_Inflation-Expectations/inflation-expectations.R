@@ -3,7 +3,6 @@
 # ************************************************************************
 # URL: https://www.clevelandfed.org/indicators-and-data/inflation-expectations
 # Feel free to copy, adapt, and use this code for your own purposes.
-# Matthias Spichiger (matthias.spichiger@bluewin.ch)
 # ************************************************************************
 
 ## Load packages ----
@@ -13,7 +12,7 @@ library(scales)
 library(ggtext)
 
 start_date <- "2000-01-01"
-usrecdp <- read_csv(file = "Recession-Dates/NBER/Recession-Dates_NBER_US_Daily_Midpoint.csv")
+usrecdp <- read_csv(file = "Recession-Dates/US_NBER/Recession-Dates_NBER_US_Daily_Midpoint.csv")
 
 ## Access the data ----
 # - N-Year Expected Inflation (EXPINF[1-30]YR)

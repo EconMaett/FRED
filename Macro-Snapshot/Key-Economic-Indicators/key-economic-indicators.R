@@ -4,7 +4,6 @@
 # Key series the FOMC highlights in its Summary of Economic Projections (SEP)
 # URL: https://stlouisfed.shinyapps.io/macro-snapshot/#keyIndicators
 # Feel free to copy, adapt, and use this code for your own purposes.
-# Matthias Spichiger (matthias.spichiger@bluewin.ch)
 # ************************************************************************
 
 ## Load packages ----

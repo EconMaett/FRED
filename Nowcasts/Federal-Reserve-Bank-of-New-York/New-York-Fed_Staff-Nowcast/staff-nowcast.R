@@ -3,7 +3,6 @@
 # ************************************************************************
 # URL: https://www.newyorkfed.org/research/policy/nowcast#/overview
 # Feel free to copy, adapt, and use this code for your own purposes.
-# Matthias Spichiger (matthias.spichiger@bluewin.ch)
 # ************************************************************************
 
 ## Load packages ----
@@ -13,7 +12,7 @@ library(scales)
 library(ggtext)
 
 start_date <- "2015-01-01"
-usrecdp <- read_csv(file = "Recession-Dates/NBER/Recession-Dates_NBER_US_Daily_Midpoint.csv")
+usrecdp <- read_csv(file = "Recession-Dates/US_NBER/Recession-Dates_NBER_US_Daily_Midpoint.csv")
 
 ## Access the data ----
 staff_url <- "https://www.newyorkfed.org/medialibrary/Research/Interactives/Data/NowCast/Downloads/New-York-Fed-Staff-Nowcast_download_data.xlsx"

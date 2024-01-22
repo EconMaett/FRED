@@ -3,7 +3,6 @@
 # ************************************************************************
 # URL: https://www.oecd.org/economy/weekly-tracker-of-gdp-growth/
 # Feel free to copy, adapt, and use this code for your own purposes.
-# Matthias Spichiger (matthias.spichiger@bluewin.ch)
 # ************************************************************************
 
 ## Load packages ----
@@ -13,7 +12,7 @@ library(scales)
 library(ggtext)
 
 start_date <- "2019-11-01"
-usrecdp <- read_csv(file = "Recession-Dates/OECD/Recession-Dates_OECD_US_Daily_Midpoint.csv")
+usrecdp <- read_csv(file = "Recession-Dates/US_NBER/Recession-Dates_NBER_US_Daily_Midpoint.csv")
 
 ## Access the data ----
 # human and machine readable urls:
@@ -21,11 +20,10 @@ tracker_url1 <- "https://webfs.oecd.org/oecd_weekly_tracker/Data/Weekly_Tracker_
 
 tracker_url2 <- "https://webfs.oecd.org/oecd_weekly_tracker/Data/weekly_tracker_level.xlsx"
 
-download.file(url = tracker_url1, destfile = "Nowcasts/OECD-Weekly-Tracker/Weekly-Tracker-Excel.xlsx", method = "curl")
-download.file(url = tracker_url2, destfile = "Nowcasts/OECD-Weekly-Tracker/weekly-tracker-level.xlsx", method = "curl")
-
+download.file(url = tracker_url1, destfile = "Nowcasts/OECD_Weekly-Tracker/Weekly_Tracker_Excel.xlsx")
+download.file(url = tracker_url2, destfile = "Nowcasts/OECD_Weekly-Tracker/weekly-tracker-level.xlsx")
 # Every country is in another sheet of the Excel file
-df <- readxl::read_excel(path = "Nowcasts/OECD-Weekly-Tracker/Weekly-Tracker-Excel.xlsx", 
+df <- readxl::read_excel(path = "Nowcasts/OECD_Weekly-Tracker/Weekly-Tracker-Excel.xlsx", 
                          sheet = "United States")
 df
 names(df)

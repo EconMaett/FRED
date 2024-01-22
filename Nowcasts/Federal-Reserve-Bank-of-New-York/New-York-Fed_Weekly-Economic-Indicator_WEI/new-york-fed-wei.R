@@ -3,7 +3,6 @@
 # ************************************************************************
 # URL: https://www.newyorkfed.org/research/policy/weekly-economic-index#/
 # Feel free to copy, adapt, and use this code for your own purposes.
-# Matthias Spichiger (matthias.spichiger@bluewin.ch)
 # ************************************************************************
 
 ## Load packages ----
@@ -14,7 +13,7 @@ library(ggtext)
 require(RcppRoll)
 
 start_date <- "2005-01-01"
-usrecdp <- read_csv(file = "Recession-Dates/NBER/Recession-Dates_NBER_US_Daily_Midpoint.csv")
+usrecdp <- read_csv(file = "Recession-Dates/US_NBER/Recession-Dates_NBER_US_Daily_Midpoint.csv")
 
 ## Access the data ----
 params <- list(
